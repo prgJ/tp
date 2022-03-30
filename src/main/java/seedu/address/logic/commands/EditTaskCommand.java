@@ -41,7 +41,7 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_STARTTIME + "START TIME] "
             + "[" + PREFIX_ENDTIME + "END TIME] "
             + "[" + PREFIX_TAG + "TAG]..."
-            + "[" +PREFIX_CONTACT + "PERSON]...\n"
+            + "[" + PREFIX_CONTACT + "PERSON]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "22-12-2022 "
             + PREFIX_ENDTIME + "23:59";

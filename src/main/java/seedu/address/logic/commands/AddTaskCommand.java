@@ -32,7 +32,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_STARTTIME + "START TIME "
             + PREFIX_ENDTIME + "END TIME "
             + "[" + PREFIX_TAG + "TAG]..."
-            + "[" +PREFIX_CONTACT + "PERSON]...\n"
+            + "[" + PREFIX_CONTACT + "PERSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Investor introduction "
             + PREFIX_DATE + "08-04-2022 "
