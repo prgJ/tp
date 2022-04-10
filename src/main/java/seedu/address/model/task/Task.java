@@ -100,6 +100,9 @@ public class Task implements Comparable<Task> {
                 && otherTask.getName().equals(getName());
     }
 
+    /**
+     * Returns true if task has an end time equal to or before its start time.
+     */
     public boolean hasStartEndDateConflict() {
         LocalTime thisTaskStart = LocalTime.parse(startTime.value);
         LocalTime thisTaskEnd = LocalTime.parse(endTime.value);

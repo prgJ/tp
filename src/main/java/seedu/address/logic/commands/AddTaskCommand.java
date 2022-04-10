@@ -67,7 +67,7 @@ public class AddTaskCommand extends Command {
         List<Task> unfilteredTaskList = model.getUnfilteredTaskList();
         Set<Name> persons = toAdd.getPersons();
 
-        if(toAdd.hasStartEndDateConflict()){
+        if (toAdd.hasStartEndDateConflict()) {
             throw new CommandException(String.format(MESSAGE_SCHEDULE_CONFLICT_STARTEND_TIME));
         }
 
