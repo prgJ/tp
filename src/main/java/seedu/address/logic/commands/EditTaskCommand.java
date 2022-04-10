@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.AddTaskCommand.MESSAGE_SCHEDULE_CONFLICT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -72,6 +73,7 @@ public class EditTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         List<Person> unfilteredPersonList = model.getUnfilteredPersonList();
+        List<Task> unfilteredTaskList = model.getUnfilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -86,6 +88,7 @@ public class EditTaskCommand extends Command {
 
         Set<Name> persons = editedTask.getPersons();
 
+        //person exists in contact list
         for (Name name: persons) {
             boolean notFound = true;
             for (Person person: unfilteredPersonList) {
@@ -95,6 +98,19 @@ public class EditTaskCommand extends Command {
             }
             if (notFound) {
                 throw new CommandException(String.format(MESSAGE_CONTACT_NOT_FOUND_IN_LIST, name));
+            }
+        }
+
+        //checks if persons are already involved in tasks with conflicting time ranges to the newly added task
+        for (Name name: persons) {
+            for (Task task: unfilteredTaskList) {
+                Set<Name> nameList = task.getPersons();
+                if (nameList.contains(name)) {
+                    boolean conflictExist = task.hasDateTimeConflict(editedTask);
+                    if (conflictExist) {
+                        throw new CommandException(String.format(MESSAGE_SCHEDULE_CONFLICT, name));
+                    }
+                }
             }
         }
 
