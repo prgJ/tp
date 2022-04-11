@@ -12,14 +12,34 @@ title: User Guide
 ## **1. Introduction**
 Coach2K22 is a desktop app that helps busy sports coaches **organise their overwhelming lists of contacts and messy weekly schedules.** It also provides them with a **platform to visualise defensive and offensive plays** as the game unfolds.
 
+### 1.1 Installation Instructions
+=======
 This application is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Coach2K22 can get your administrative tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
+1. Download the latest '.jar' file from [here](https://github.com/AY2122S2-CS2103T-W14-2/tp/releases).
+
+2. Copy the file to the folder you want to use as the _home folder_ for your copy of Coach2k22.
+
+3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+    
+4. Type your commands in the Command Line Interface box (CLI) labeled below. You can switch between the three tabs (Contact, Schedule, Strategy tabs).<br>
+   ![Ui-labeled](images/Ui-Labeled.png)
+
+5. Refer to the [Features](#2-features) below for details of each command, as well as their formats.
+
+6. Contacts and Schedule related tabs will be saved automatically (Strategy needs to be explicitly saved).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
+</div>
+
 ## **2. About the User Guide**
 
 ### 2.1 Purpose
-This User Guide provides an in-depth documentation of our product to help familarise you with Coach2K22. You can refer to [Structure](#22-structure) to find out what's included in this document. 
+This User Guide provides an in-depth documentation of our product to help familarise you with using Coach2K22 for your organisation purposes. You can refer to [Structure](#22-structure) to find out what's included in this document. 
 
 ### 2.2 Structure
 This User Guide consist of six sections: [Introduction](#1-introduction), [About the User Guide](#2-about-the-user-guide), [Quick Start](#3-quick-start), [Features](#4-features), [FAQ](#5-faq), and [Command Summary](#6-command-summary).
@@ -110,6 +130,18 @@ This subsection describes some noteworthy information about the command format t
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Features**
+
+* This Features section is an exhaustive list of all the commands and capabilities of Coach2K22. 
+
+* Commands in Coach2K22 are split into 3 distinct categories
+
+### Categories of Commands ###
+1. Contact Management
+   * This [section](#4.1-contact-management) contains information about commands for editing information related to people.
+2. Task Management
+   * This [section](#4.2-task-management) contains information about commands for editing information related to tasks.
+3. Strategic Planning
+   * This [section](#4.3-strategic-planning) contains information about commands for manipulating the strategy board.
 
 ### 4.1 Contact Management
 
@@ -558,10 +590,11 @@ Remove a player from the strategy board.
 
 Format: `del-player PLAYER_NAME`
 
-As mentioned above, the player name is case-sensitive.
+As mentioned above, the player name is case-sensitive. 
+And the player name must be present on the strategy board.
 
 Examples:
-* `del-player Messi` removes the player named `Messi` from the strategy board.
+* `del-player Messi` removes the player named `Messi` from the strategy board if such player exists on the strategy board.
 
 #### 4.3.4 Moving a player to a coordinate: `move`
 
@@ -607,7 +640,18 @@ Format: `exit`
 
 ## **6. Command summary**
 
+This section will give a summary of all the commands available in the application. 
+They will be classified into the following categories by command usage:
+* [**Contact Management**](#61-contact-management)
+* [**Task Management**](#62-task-management)
+* [**Strategic Planning**](#63-strategic-planning)
+* [**General**](#64-general)
+
+You can find the corresponding command format and maybe one example for the actions you are able to perform on the application.
+
 ### 6.1 Contact Management
+This section will list all the commands available for contact management in the application. 
+The actions here are all related to managing the contacts of the user. 
 
 | Action                   | Format, Examples                                                                                                                                             |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -629,6 +673,8 @@ Format: `exit`
 | **Sort by Weaknesses**   | `sort-weakness`<br/>                                                                                                                                              |
 
 ### 6.2 Task Management
+This section will list all the commands available for task management in the application.
+The actions here are all related to managing the tasks of the user.
 
 | Action           | Format, Examples                                                                  |
 |------------------|-----------------------------------------------------------------------------------|
@@ -644,6 +690,8 @@ Format: `exit`
 | **Sort By Date** | `sort-date`                                                                       |
 
 ### 6.3 Strategic Planning
+This section will list all the commands available for strategic planning in the application.
+The actions here are all related to performing the strategic planning.
 
 | Action            | Format, Examples                                                        |
 |-------------------|-------------------------------------------------------------------------|
@@ -655,6 +703,8 @@ Format: `exit`
 
 
 ### 6.4 General
+This section will list all the commands available for general usage in the application.
+The actions here are all related to general usage.
 
 | Action       | Format, Examples        |
 |--------------|-------------------------|

@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant "l:LoadCourtCommand" as LoadCourtCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box MainWindow MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> Coach2K22Parser : parseCommand(args)
+activate Coach2K22Parser
+
+create LoadCourtCommand
+Coach2K22Parser -> LoadCourtCommand : s
+activate LoadCourtCommand
+
+LoadCourtCommand --> Coach2K22Parser
+deactivate LoadCourtCommand
+
+Coach2K22Parser --> LogicManager : s
+deactivate Coach2K22Parser
+
+LogicManager -> LoadCourtCommand : execute()
+activate LoadCourtCommand
+
+create CommandResult
+LoadCourtCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LoadCourtCommand
+
+MainWindow --> CommandResult : getBackgroundImage()
+CommandResult --> MainWindow
+deactivate CommandResult
+
+LoadCourtCommand --> LogicManager : result
+deactivate LoadCourtCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -95,9 +95,10 @@ public class EditTaskCommand extends Command {
             throw new CommandException(String.format(MESSAGE_SCHEDULE_CONFLICT_START_END_TIME));
         }
 
-        Set<Name> persons = editedTask.getPersons();
+        Set<Name> originalPersons = taskToEdit.getPersons();
+        Set<Name> editedPersons = editedTask.getPersons();
 
-        for (Name name: persons) {
+        for (Name name: editedPersons) {
             boolean notFound = true;
             for (Person person: unfilteredPersonList) {
                 if (person.getName().equals(name)) {
@@ -105,14 +106,15 @@ public class EditTaskCommand extends Command {
                 }
             }
 
-            //checks if persons are already involved in tasks with conflicting time ranges to the edited task
-            for (Name names: persons) {
-                for (Task task: unfilteredTaskList) {
-                    Set<Name> nameList = task.getPersons();
-                    if (nameList.contains(names)) {
-                        boolean conflictExist = task.hasDateTimeConflict(editedTask);
-                        if (conflictExist) {
-                            throw new CommandException(String.format(MESSAGE_SCHEDULE_CONFLICT, name));
+            if (!originalPersons.containsAll(editedPersons)) {
+                for (Name names : editedPersons) {
+                    for (Task task : unfilteredTaskList) {
+                        Set<Name> nameList = task.getPersons();
+                        if (nameList.contains(names)) {
+                            boolean conflictExist = task.hasDateTimeConflict(editedTask);
+                            if (conflictExist) {
+                                throw new CommandException(String.format(MESSAGE_SCHEDULE_CONFLICT, name));
+                            }
                         }
                     }
                 }

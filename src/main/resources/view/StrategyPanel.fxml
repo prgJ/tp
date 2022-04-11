@@ -12,6 +12,6 @@
          <ImageView fx:id="strategyImage" fitHeight="176.0" fitWidth="217.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true" />
       </children>
    </AnchorPane>
-   <Slider fx:id="vSlider" layoutX="-11.0" layoutY="16.0" max="176.0" orientation="VERTICAL" prefHeight="184.0" prefWidth="25.0" showTickLabels="true" showTickMarks="true" styleClass="axis-left" stylesheets="@Extensions.css" value="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-11.0" AnchorPane.topAnchor="16.0" />
-   <Slider fx:id="hSlider" layoutX="21.0" layoutY="-11.0" max="204.0" prefHeight="32.0" prefWidth="204.0" showTickLabels="true" showTickMarks="true" styleClass="axis-top" stylesheets="@Extensions.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-11.0" />
+   <Slider fx:id="vSlider" layoutX="-11.0" layoutY="16.0" max="600.0" orientation="VERTICAL" prefHeight="184.0" prefWidth="25.0" showTickLabels="true" showTickMarks="true" styleClass="axis-left" stylesheets="@Extensions.css" value="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-11.0" AnchorPane.topAnchor="16.0" />
+   <Slider fx:id="hSlider" layoutX="21.0" layoutY="-11.0" max="1000.0" prefHeight="32.0" prefWidth="204.0" showTickLabels="true" showTickMarks="true" styleClass="axis-top" stylesheets="@Extensions.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-11.0" />
 </AnchorPane>

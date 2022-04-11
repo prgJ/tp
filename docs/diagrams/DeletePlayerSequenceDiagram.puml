@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant ":DeletePlayerCommandParser" as DeletePlayerCommandParser LOGIC_COLOR
+participant "p:DeletePlayerCommand" as DeletePlayerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("del-player Cena")
+activate LogicManager
+
+LogicManager -> Coach2K22Parser : parseCommand("del-player Cena")
+activate Coach2K22Parser
+
+create DeletePlayerCommandParser
+Coach2K22Parser -> DeletePlayerCommandParser
+activate DeletePlayerCommandParser
+
+DeletePlayerCommandParser --> Coach2K22Parser
+deactivate DeletePlayerCommandParser
+
+Coach2K22Parser -> DeletePlayerCommandParser : parse("Cena")
+activate DeletePlayerCommandParser
+
+create DeletePlayerCommand
+DeletePlayerCommandParser -> DeletePlayerCommand
+activate DeletePlayerCommand
+
+DeletePlayerCommand --> DeletePlayerCommandParser : p
+deactivate DeletePlayerCommand
+
+DeletePlayerCommandParser --> Coach2K22Parser : p
+deactivate DeletePlayerCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeletePlayerCommandParser -[hidden]-> Coach2K22Parser
+destroy DeletePlayerCommandParser
+
+Coach2K22Parser --> LogicManager : p
+deactivate Coach2K22Parser
+
+LogicManager -> DeletePlayerCommand : execute()
+activate DeletePlayerCommand
+
+DeletePlayerCommand -> Model : deletePlayer(Player)
+activate Model
+
+Model --> DeletePlayerCommand
+deactivate Model
+
+create CommandResult
+DeletePlayerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeletePlayerCommand
+deactivate CommandResult
+
+DeletePlayerCommand --> LogicManager : result
+deactivate DeletePlayerCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

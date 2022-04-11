@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant "s:SortNoteCommand" as SortNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> Coach2K22Parser : parseCommand("sort-note")
+activate Coach2K22Parser
+
+create SortNoteCommand
+Coach2K22Parser -> SortNoteCommand : s
+activate SortNoteCommand
+
+SortNoteCommand --> Coach2K22Parser
+deactivate SortNoteCommand
+
+Coach2K22Parser --> LogicManager : s
+deactivate Coach2K22Parser
+
+LogicManager -> SortNoteCommand : execute()
+activate SortNoteCommand
+
+SortNoteCommand -> Model : setAddressBook(sortedAddressBook)
+activate Model
+
+Model --> SortNoteCommand
+deactivate Model
+
+create CommandResult
+SortNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortNoteCommand
+deactivate CommandResult
+
+SortNoteCommand --> LogicManager : result
+deactivate SortNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

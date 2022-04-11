@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -42,11 +40,13 @@ public class StrategyPanel extends UiPart<Region> {
     private static final String FXML = "StrategyPanel.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static final Map<String, StackPane> table = new HashMap<>();
+    private static final int BOARD_WIDTH = 1000;
+    private static final int BOARD_HEIGHT = 600;
 
     private static double orgSceneX;
     private static double orgSceneY;
-    private static double orgCenterX;
-    private static double orgCenterY;
+    private static double orgTranslateX;
+    private static double orgTranslateY;
 
     @FXML
     private Pane playerView;
@@ -70,8 +70,8 @@ public class StrategyPanel extends UiPart<Region> {
             public void handle(MouseEvent t) {
                 orgSceneX = t.getSceneX();
                 orgSceneY = t.getSceneY();
-                orgCenterX = ((StackPane) (t.getSource())).getLayoutX();
-                orgCenterY = ((StackPane) (t.getSource())).getLayoutY();
+                orgTranslateX = ((StackPane) (t.getSource())).getTranslateX();
+                orgTranslateY = ((StackPane) (t.getSource())).getTranslateY();
                 //logger.log(Level.INFO, "orgCenterX: {0}", new Object[]{orgCenterX});
                 //logger.log(Level.INFO, "orgCenterY: {0}", new Object[]{orgCenterY});
             }
@@ -85,15 +85,19 @@ public class StrategyPanel extends UiPart<Region> {
             public void handle(MouseEvent t) {
                 double offsetX = t.getSceneX() - orgSceneX;
                 double offsetY = t.getSceneY() - orgSceneY;
-                double newCenterX = orgCenterX + offsetX;
-                double newCenterY = orgCenterY + offsetY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
                 StackPane tmp = (StackPane) (t.getSource());
-                tmp.setLayoutX(newCenterX);
-                tmp.setLayoutY(newCenterY);
-                //logger.log(Level.INFO, "newCenterX: {0} new CenterY: {1}",
-                //        new Object[]{offsetX + orgCenterX, offsetY + orgCenterY});
+                //tmp.setLayoutX(newCenterX);
+                //tmp.setLayoutY(newCenterY);
+                double ratioX = newTranslateX / strategyAnchorPane.getWidth();
+                double ratioY = newTranslateY / strategyAnchorPane.getHeight();
+                tmp.translateXProperty().bind(strategyAnchorPane.widthProperty().multiply(ratioX));
+                tmp.translateYProperty().bind(strategyAnchorPane.heightProperty().multiply(ratioY));
+                //logger.log(Level.INFO, "newTranslateX: {0} new TranslateY: {1} ratioX: {2} ratioY: {3}",
+                //        new Object[]{newTranslateX, newTranslateY, ratioX, ratioY});
                 //logger.log(Level.INFO, "newTrueX: {0} new TrueY: {1}",
-                //        new Object[]{tmp.getCenterX(), tmp.getCenterY()});
+                //        new Object[]{tmp.getLayoutX(), tmp.getLayoutY()});
             }
     };
 
@@ -117,26 +121,6 @@ public class StrategyPanel extends UiPart<Region> {
         // brings slider to the back
         vSlider.toBack();
         hSlider.toBack();
-        sliderValueChangeOnWindowResize();
-    }
-
-    /**
-     * Listens to changes in the size of strategy anchor pane and reflects the
-     * value on the slider.
-     */
-    private void sliderValueChangeOnWindowResize() {
-        strategyAnchorPane.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                hSlider.setMax(Math.round(strategyAnchorPane.getWidth()));
-            }
-        });
-        strategyAnchorPane.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                vSlider.setMax(Math.round(strategyAnchorPane.getHeight()));
-            }
-        });
     }
 
     private void changeOnAdd(List<? extends Player> addedSubList) {
@@ -212,8 +196,12 @@ public class StrategyPanel extends UiPart<Region> {
         text.xProperty().bind(cr.centerXProperty());
         text.yProperty().bind(cr.centerYProperty());
         stack.getChildren().addAll(cr, text);
-        stack.setTranslateX(x);
-        stack.setTranslateY(y);
+        //stack.setTranslateX(x);
+        //stack.setTranslateY(y);
+        stack.translateXProperty()
+                .bind(strategyAnchorPane.widthProperty().divide(BOARD_WIDTH).multiply(x));
+        stack.translateYProperty()
+                .bind(strategyAnchorPane.heightProperty().divide(BOARD_HEIGHT).multiply(BOARD_HEIGHT - y));
         stack.setOnMousePressed(pressHandler);
         stack.setOnMouseDragged(dragHandler);
     }

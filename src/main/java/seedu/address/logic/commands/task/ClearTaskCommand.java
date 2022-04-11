@@ -58,7 +58,7 @@ public class ClearTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getUnfilteredTaskList();
         if (lastShownList.isEmpty()) {
             throw new CommandException(MESSAGE_EMPTY_LIST);
         }

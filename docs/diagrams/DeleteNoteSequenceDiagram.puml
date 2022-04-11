@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant ":DeleteNoteCommandParser" as DeleteNoteCommandParser LOGIC_COLOR
+participant "p:DeleteNoteCommand" as DeleteNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("note-del 1 1...")
+activate LogicManager
+
+LogicManager -> Coach2K22Parser : parseCommand("note-del 1 1...")
+activate Coach2K22Parser
+
+create DeleteNoteCommandParser
+Coach2K22Parser -> DeleteNoteCommandParser
+activate DeleteNoteCommandParser
+
+DeleteNoteCommandParser --> Coach2K22Parser
+deactivate DeleteNoteCommandParser
+
+Coach2K22Parser -> DeleteNoteCommandParser : parse("note-del 1 1...")
+activate DeleteNoteCommandParser
+
+create DeleteNoteCommand
+DeleteNoteCommandParser -> DeleteNoteCommand
+activate DeleteNoteCommand
+
+DeleteNoteCommand --> DeleteNoteCommandParser : p
+deactivate DeleteNoteCommand
+DeleteNoteCommandParser --> Coach2K22Parser : p
+
+DeleteNoteCommandParser -[hidden]-> Coach2K22Parser
+destroy DeleteNoteCommandParser
+
+Coach2K22Parser --> LogicManager : p
+deactivate Coach2K22Parser
+
+LogicManager -> DeleteNoteCommand : execute()
+activate DeleteNoteCommand
+
+DeleteNoteCommand -> Model : setPerson(originalPerson, editedPerson)
+activate Model
+
+Model --> DeleteNoteCommand
+deactivate Model
+
+create CommandResult
+DeleteNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteNoteCommand
+deactivate CommandResult
+
+DeleteNoteCommand --> LogicManager : result
+deactivate DeleteNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -48,7 +48,7 @@ deactivate Coach2K22Parser
 LogicManager -> AddPlayerCommand : execute()
 activate AddPlayerCommand
 
-AddPlayerCommand -> Model : addPlayer("Cena")
+AddPlayerCommand -> Model : addPlayer(Player)
 activate Model
 
 Model --> AddPlayerCommand

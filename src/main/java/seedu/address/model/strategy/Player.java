@@ -10,7 +10,7 @@ public class Player {
             + " and must be not more then 24 characters"
             + " and must not contain \"/\". \n";
     private static final int DEF_XCOORD = 50;
-    private static final int DEF_YCOORD = 50;
+    private static final int DEF_YCOORD = 500;
 
     private final String name;
     private int xCoord;

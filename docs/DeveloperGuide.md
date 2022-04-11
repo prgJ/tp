@@ -86,14 +86,14 @@ The `UI` component,
 
 ### 3.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `Coach2K22Parser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `Coach2K22Parser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Coach2K22Parser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 3.4 Model component
@@ -302,7 +302,7 @@ The steps above are summarised using a sequence diagram as shown below.
 
 ##### Design Consideration
 
-**Aspect: Should the implementation use the existing edit functionalities in AB3:**
+**Aspect: Should the implementation use the existing edit functionalities in Coach2K22:**
 * **Alternative 1:**  Use the current EditCommand class to edit a person's tags.
     * Pros: Maintains abstraction and reuses code instead of writing new code.
     * Cons: Creates a cyclic dependency, making the code base harder to maintain later on
@@ -352,6 +352,99 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** A combined command for finding tasks and persons.
     * Pros: Easier and more intuitive for the user to understand.
     * Cons: Hard to implement.
+
+#### 4.1.7 Add Strength/Weakness/Misc Features
+
+##### Implementation
+
+These features allow the user to add a strength, weakness, or miscellaneous note to a person in the person list . It is facilitated by `ModelManager` which
+makes use of the method `#setPerson()` to replace the particular person with the new person with modified note list (depending on the given command).
+
+Given below is an example usage scenario of how the Add Strength mechanism behaves at each step._Note that three commands have similar implementations, so only the Add Strength feature implementation will be provided here._
+
+Step 1: The user inputs `strength-add 1 great endurance` to add the strength `great endurance` to the person in index `1` of the person list.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable parser class to process the user inputs. This initialises the `AddStrengthCommandParser` where its method `#parse()` is called to process the user inputs.
+
+Step 3: It then returns a newly initialised `AddStrengthCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, `ModelManager#setPerson()` method is called to update the specified person in the person list with the new strength list.
+
+The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `AddStrengthCommand` (and similar instances) will be generalized to `Note` and `AddNoteCommand` respectively to represent the implementation of the Add Strength, Weakness, and Misc features.
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be different note lists for each person:**
+
+* **Alternative 1 (current choice):** Separate `note-add` command into three different commands.
+    * Pros: Easier to use and more intuitive.
+    * Cons: Difficult to extend and modify.
+* **Alternative 2:** Single `note-add` command for adding to each list with provided prefixes.
+    * Pros: Easier to extend and modify.
+    * Cons: Not intuitive for the user and more prone to feature flaws
+
+#### 4.1.8 Delete Strength/Weakness/Misc Features
+
+##### Implementation
+
+These features allow the user to delete a strength, weakness, or miscellaneous note from a person in the person list . It is facilitated by `ModelManager` which
+makes use of the method `#setPerson()` to replace the particular person with the new person with modified note list (depending on the given command).
+
+Given below is an example usage scenario of how the Delete Strength mechanism behaves at each step._Note that three commands have similar implementations, so only the Delete Strength feature implementation will be provided here._
+
+Step 1: The user inputs `strength-del 1 1` to delete the first strength from the person in index `1` of the person list.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable parser class to process the user inputs. This initialises the `DeleteStrengthCommandParser` where its method `#parse()` is called to process the user inputs.
+
+Step 3: It then returns a newly initialised `DeleteStrengthCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, `ModelManager#setPerson()` method is called to update the specified person in the person list with the new strength list.
+
+The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `DeleteStrengthCommand` (and similar instances) will be generalized to `Note` and `AddNoteCommand` respectively to represent the implementation of the Delete Strength, Weakness, and Misc features.
+![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be different note lists for each person:**
+
+* **Alternative 1 (current choice):** Separate `note-del` command into three different commands.
+  * Pros: Easier to use and more intuitive.
+  * Cons: Difficult to extend and modify.
+* **Alternative 2:** Single `note-del` command for adding to each list with provided prefixes.
+  * Pros: Easier to extend and modify.
+  * Cons: Not intuitive for the user and more prone to feature flaws
+
+#### 4.1.10 Sort by Strength/Weakness Features
+
+##### Implementation
+
+These features allow the user to sort the person list by the total number of strengths/weaknesses in descending order. It is facilitated by `ModelManager` which
+makes use of the method `#setAddressBook()` to replace the address book with the newly sorted person list without modification.
+
+Given below is an example usage scenario of how the Sort Strength mechanism behaves at each step._Note that two commands have similar implementations, so only the Sort Strength feature implementation will be provided here._
+
+Step 1: The user inputs `sort-strength` to sort the entire person list by total number of strengths in descending order.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find the command class to process the command.
+
+Step 3: It then returns a newly initialised `SortStrengthCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, `ModelManager#setAddressBook()` method is called to update the person list with the newly sorted list of persons based on total number of strengths in descending order.
+
+The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `SortStrengthCommand` (and similar instances) will be generalized to `Note` and `SortNoteCommand` respectively to represent the implementation of the Sort by Strength and Weakness features.
+![SortNoteSequenceDiagram](images/SortNoteSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be different sorting functions for address book and schedule:**
+
+* **Alternative 1 (current choice):** Use different commands for sorting the address book and schedule.
+  * Pros: Easier to use and more intuitive.
+  * Cons: Difficult to extend and modify.
+* **Alternative 2:** Single `sort` command for sorting the `AddressBook` and `TaskBook`.
+  * Pros: Easier to extend and modify.
+  * Cons: Not intuitive for the user and difficult to implement
 
 ### 4.2 Task Management
 
@@ -553,7 +646,7 @@ The steps above are summarised using a sequence diagram as shown below.
 This feature allows the user to add players to the strategy board. It is facilitated by `ModelManager` which 
 makes use of the method `#addPlayer()` and `#updateFilteredPlayerList()` to add a new player to the strategy board.
 
-Given below is an example usage scenario of how the add player mechanism behaves at each step.
+Given below is an example usage scenario of how the adding player mechanism behaves at each step.
 
 Step 1: The user inputs `add-player Cena` to add a new player to the strategy board.
 
@@ -570,14 +663,108 @@ The steps above are summarised using a sequence diagram as shown below.
 
 **Aspect: Should there be an abstraction for players:**
 
-* **Alternative 1 (current choice):** A player is a String of player name.
+* **Alternative 1:** A player is a String of player name.
     * Pros: Easy to implement.
     * Cons: Hard to extend.
-* **Alternative 2:** A player is an object of class `Player`.
+* **Alternative 2 (current choice):** A player is an object of class `Player`.
     * Pros: Easy to extend and manipulate attributes of a player.
     * Cons: Hard to implement.
 
-#### 4.3.3 Export Feature
+#### 4.3.2 Load Court Feature
+
+##### Implementation
+
+This feature allows the user to load an image to serve as the background of the strategy board. It is facilitated by `CommandResult` which
+carries a representation of the image to the `MainWindow` to update the background of the strategy board accordingly.
+
+Given below is an example usage scenario of how the load court mechanism behaves at each step.
+
+Step 1: The user inputs `load-court basketball` to load the image from the filepath `courts/basketball.png` to serve as the background of strategy board.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable parser class to process the user inputs. This initialises the `LoadCourtCommandParser` where its method `#parse()` is called to process the user inputs.
+
+Step 3: It then returns a newly initialised `LoadCourtCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, the `CommandResult` object is returned to the `MainWindow`, where `CommandResult#getBackgroundImage()` is called to retrieve the image representation. Then, `MainWindow#handleLoadImage(back)` is called to update the background of the strategy board with a new image. The command results are then generated and shown to the user.
+
+The steps above are summarised using a sequence diagram as shown below.
+![LoadCourtSequenceDiagram](images/LoadCourtSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be different filetypes for images:**
+
+* **Alternative 1 (current choice):** Only png images are allowed.
+  * Pros: Easy to implement.
+  * Cons: Hard to extend and not intuitive for the user.
+* **Alternative 2:** Allow for different filetypes of images (png, jpeg, etc.).
+  * Pros: Easy to extend and more intuitive for the user.
+  * Cons: Hard to implement.
+
+#### 4.3.3 Delete Feature
+
+##### Implementation
+
+This feature allows the user to remove players from the strategy board. It is facilitated by `ModelManager` which
+makes use of the method `#deletePlayer()` and `#updateFilteredPlayerList()` to delete an existing player from the strategy board.
+
+Given below is an example usage scenario of how the deleting player mechanism behaves at each step.
+
+Step 1: The user inputs `del-player Cena` to remove a player named `Cena` from the strategy board.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable parser class to process the user inputs. This initialises the `DelPlayerCommandParser` where its method `#parse()` is called to process the user inputs.
+
+Step 3: It then returns a newly initialised `DeletePlayerCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, the `ModelManager#deletePlayer()` is called which remove the player from an internal list and updates the GUI display with a new player named "Cena" shown in the strategy board. The command results are then generated and shown to the user.
+
+The steps above are summarised using a sequence diagram as shown below.
+![DeletePlayerSequenceDiagram](images/DeletePlayerSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should allow users to remove multiple players at once:**
+
+* **Alternative 1:** Users can remove multiple players at once.
+    * Pros: Possibly improve the efficiency for users.
+    * Cons: User inputs are more prone to errors.
+* **Alternative 2 (current choice):** Users can only remove one player at a time.
+    * Pros: Easy to implement.
+    * Cons: Users need to repeat the same command multiple times to remove multiple players.
+
+#### 4.3.4 Move Feature
+
+##### Implementation
+
+This feature allows the user to move players on the strategy board. It is facilitated by `ModelManager` which
+makes use of the method `#deletePlayer()`, `#addPlayer()`, and `#updateFilteredPlayerList()` to move an existing player to a new position on the strategy board.
+
+Given below is an example usage scenario of how the moving player mechanism behaves at each step.
+
+Step 1: The user inputs `move Cena x/200 y/100` to move a player named `Cena` to a new position with x-coordinate `200` and y-coordinate `100` on the strategy board.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable parser class to process the user inputs. This initialises the `MovePlayerCommandParser` where its method `#parse()` is called to process the user inputs.
+
+Step 3: It then returns a newly initialised `MovePlayerCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, the `ModelManager#deletePlayer()` is firstly called which removes the player named "Cena" from an internal list. 
+Then the `ModelManager#addPlayer()` is called which adds the player with same name but new position to an internal list and updates the GUI display with a player named "Cena" with new position `(200, 100)` shown in the strategy board.
+At last, the command results are then generated and shown to the user.
+
+The steps above are summarised using a sequence diagram as shown below.
+![MovePlayerSequenceDiagram](images/MovePlayerSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should allow users to move multiple players at once:**
+* **Alternative 1:** Users can move multiple players at once.
+    * Pros: Possibly improve the efficiency for users.
+    * Cons: User inputs are more prone to errors.
+* **Alternative 2 (current choice):** Users can only move one player at a time.
+    * Pros: Easy to implement.
+    * Cons: Users need to repeat the same command multiple times to move multiple players.
+
+#### 4.3.5 Export Feature
 
 ##### Implementation
 
@@ -611,6 +798,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** A directory is created in-app with randomly generated file names`.
     * Pros: Easier for users as they have less work to do.
     * Cons: Hard to organize and structure.
+
     
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1228,6 +1416,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Move a player on the strategy board**
+
+**MSS**
+
+1. User requests to show all players on the strategy board
+2. Coach2K22 shows players
+3. User requests to move a player on the strategy board
+4. Coach2K22 shows the updated strategy board with the player moved to the new position
+
+   Use case ends.
+
+**Extension**
+* 3a. The player name is invalid.
+    * 3a1. Coach2K22 shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The player name is not on the strategy board.
+    * 3b1. Coach2K22 shows an error message.
+
+      Use case resumes at step 2.
+* 3c. The position is invalid.
+    * 3c1. Coach2K22 shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Load new background image for strategy tab**
 
 **MSS**
@@ -1298,16 +1511,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### 7.2 Deleting a person
 
@@ -1315,21 +1526,115 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+   
 ### 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+
+### 7.4 Adding a Strength/Weakness/Miscellaneous note to a person
+
+1. Adding a strength/weakness/miscellaneous (using `strength-add`, `weakness-add`, and `misc-add` respectively) note to a person while currently viewable person list has people.
+
+2. Prerequisites: Currently viewable Contacts list has to contain some people.
+
+3. Test case: `strength-add 1 good stamina`<br>
+   Expected: The note `good stamina` is added to the strength list of the first person in the current Contacts list. Details of the modified contact shown in the status message.
+
+4. Test case: `weakness-add 1 bad stamina`<br>
+   Expected: The note `bad stamina` is added to the weakness list of the first person in the current Contacts list. Details of the modified contact shown in the status message.
+
+5. Test case: `misc-add 1 likes ice cream`<br>
+   Expected: The note `likes ice cream` is added to the misc list of the first person in the current Contacts list. Details of the modified contact shown in the status message.
+
+6. Test case: `strength-add 0 good stamina`<br>
+   Expected: No note is added. Error details shown in the status message. Status bar remains the same.
+
+7. Other incorrect commands to try: `strength-add`, `misc-add x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### 7.5 Deleting a Strength/Weakness/Miscellaneous note to a person
+
+1. Deleting a strength/weakness/miscellaneous note (using `strength-del`, `weakness-del`, and `misc-del` respectively) to a person while currently viewable person list has people.
+
+2. Prerequisites: Currently viewable Contacts list has to contain some people.
+
+3. Test case: `strength-del 1 1`<br>
+   Expected: The first note is deleted from the strength list of the first person in the current Contacts list. Details of the modified contact shown in the status message.
+
+4. Test case: `weakness-del 1 1`<br>
+   Expected: Similar to previous, except the note is deleted from the weakness list.
+
+5. Test case: `misc-del 1 1`<br>
+      Expected: Similar to previous, except the note is deleted from the misc list.
+
+6. Test case: `strength-del 0 1`<br>
+   Expected: No note is deleted. Error details shown in the status message. Status bar remains the same.
+
+7. Test case: `strength-del 1 0`<br>
+   Expected: Similar to previous.
+
+8. Other incorrect commands to try: `strength-del`, `misc-del x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+
+### 7.6 Clearing all Tasks from the task list or only those on a particular day
+
+1. Empty the task list or remove only those that correspond with a given day.
+
+2. Prerequisites: Unfiltered Schedule must contain some tasks.
+
+3. Test case: `clear-t`<br>
+   Expected: The entire task list in contacts will be cleared.
+
+4. Test case: `clear-t d/03-03-2022`<br>
+   Expected: If there are tasks that are allocated on `03-03-2022`, remove them. Otherwise, no task is deleted, and error details are shown in the status message.
+
+5. Test case: `clear-t d/30-02-2022`<br>
+   Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+
+6. Test case: `clear-t d/2022-03-03`<br>
+   Expected: Similar to previous.
+
+7. Other incorrect commands to try: `clear-t d/abc`, `clear-t d`, `clear-t d/`, `...`<br>
+   Expected: Similar to previous.
+
+### 7.7 Sort the Contacts list by strength or weakness in descending order
+
+1. Sort the entire Contact list by strength (for `sort-strength`) or weakness (for `sort-weakness`) in descending order
+
+2. Prerequisites: Unfiltered Contacts list must contain some people.
+
+3. Test case: `sort-strength`<br>
+   Expected: The entire contact list is sorted by total number of strengths in descending order.
+
+4. Test case: `sort-weakness`<br>
+      Expected: The entire contact list is sorted by total number of weaknesses in descending order.
+
+5. Test case: `sort-strength abc`<br>
+      Expected: The entire contact list is sorted by total number of strengths in descending order (anything after the command word is ignored).
+
+### 7.8 Load new image to serve as court in Strategy Tab
+
+1. Loads the given image by the provided name to serve as the court in Strategy Tab.
+
+2. Prerequisites: Image must be a png file and stored in the automatically generated `courts` directory which exists in the same folder as the JAR.
+
+3. Test case: `load-court basketball`<br>
+   Expected: The image `basketball.png` will be loaded from the `courts` directory and serve as the court in the Strategy tab. If it does not exist, no image is loaded, and error details are shown in the status message.
+
+4. Test case: `load-court`<br>
+   Expected: No image is loaded, and error details are shown in the status message.
+
+5. Test case: `load-court test/`<br>
+   Expected: Similar to previous. Even if `test.png` exists, as `/` are not allowed in command argument.

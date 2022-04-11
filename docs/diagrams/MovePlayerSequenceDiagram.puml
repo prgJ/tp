@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant ":MovePlayerCommandParser" as MovePlayerCommandParser LOGIC_COLOR
+participant "p:MovePlayerCommand" as MovePlayerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("move Cena ...")
+activate LogicManager
+
+LogicManager -> Coach2K22Parser : parseCommand("move Cena ...")
+activate Coach2K22Parser
+
+create MovePlayerCommandParser
+Coach2K22Parser -> MovePlayerCommandParser
+activate MovePlayerCommandParser
+
+MovePlayerCommandParser --> Coach2K22Parser
+deactivate MovePlayerCommandParser
+
+Coach2K22Parser -> MovePlayerCommandParser : parse("Cena ...")
+activate MovePlayerCommandParser
+
+create MovePlayerCommand
+MovePlayerCommandParser -> MovePlayerCommand
+activate MovePlayerCommand
+
+MovePlayerCommand --> MovePlayerCommandParser : p
+deactivate MovePlayerCommand
+
+MovePlayerCommandParser --> Coach2K22Parser : p
+deactivate MovePlayerCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MovePlayerCommandParser -[hidden]-> Coach2K22Parser
+destroy MovePlayerCommandParser
+
+Coach2K22Parser --> LogicManager : p
+deactivate Coach2K22Parser
+
+LogicManager -> MovePlayerCommand : execute()
+activate MovePlayerCommand
+
+MovePlayerCommand -> Model : deletePlayer(Player)
+activate Model
+
+Model --> MovePlayerCommand
+deactivate Model
+
+MovePlayerCommand -> Model : addPlayer(Player)
+activate Model
+
+Model --> MovePlayerCommand
+deactivate Model
+
+create CommandResult
+MovePlayerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MovePlayerCommand
+deactivate CommandResult
+
+MovePlayerCommand --> LogicManager : result
+deactivate MovePlayerCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
