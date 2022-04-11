@@ -4,6 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":Coach2K22Parser" as Coach2K22Parser LOGIC_COLOR
+participant ":LoadCourtCommandParser" as LoadCourtCommandParser LOGIC_COLOR
 participant "l:LoadCourtCommand" as LoadCourtCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -18,14 +19,29 @@ activate LogicManager
 LogicManager -> Coach2K22Parser : parseCommand(args)
 activate Coach2K22Parser
 
+create LoadCourtCommandParser
+Coach2K22Parser -> LoadCourtCommandParser
+activate LoadCourtCommandParser
+
+LoadCourtCommandParser --> Coach2K22Parser
+deactivate LoadCourtCommandParser
+
+Coach2K22Parser -> LoadCourtCommandParser : parse()
+activate LoadCourtCommandParser
+
 create LoadCourtCommand
-Coach2K22Parser -> LoadCourtCommand : s
+LoadCourtCommandParser -> LoadCourtCommand
 activate LoadCourtCommand
 
-LoadCourtCommand --> Coach2K22Parser
+LoadCourtCommand --> LoadCourtCommandParser
 deactivate LoadCourtCommand
 
-Coach2K22Parser --> LogicManager : s
+LoadCourtCommandParser --> Coach2K22Parser
+
+LoadCourtCommandParser -[hidden]-> Coach2K22Parser
+destroy LoadCourtCommandParser
+
+Coach2K22Parser --> LogicManager
 deactivate Coach2K22Parser
 
 LogicManager -> LoadCourtCommand : execute()
