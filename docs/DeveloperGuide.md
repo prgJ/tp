@@ -576,7 +576,41 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** A player is an object of class `Player`.
     * Pros: Easy to extend and manipulate attributes of a player.
     * Cons: Hard to implement.
-    
+
+#### 4.3.3 Export Feature
+
+##### Implementation
+
+This feature allows the user to export the strategy board as a .png image into their device. 
+It is facilitated by `CommandResult` which makes use of the method `#captureAndSaveStrategyBoard()` 
+from the `StrategyPanel` to export the strategy board.
+
+Given below is an example usage scenario of how the export command mechanism behaves at each step.
+
+Step 1: The user inputs `export` to into the command line to export the current strategy board.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable 
+parser class to process the user inputs. 
+
+Step 3: It then returns a newly initialised `ExportCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, the `CommandResult` object is returned to the `MainWindow`,
+where `MainWindow#captureAndSaveStrategyPanel()` is called to capture an image of the strategy board. 
+The user is then prompted to choose a directory from their local disk to save the image in, and hence the picture is saved locally.
+
+The steps above are summarised using a sequence diagram as shown below.
+![ExportCommandDiagram](images/ExportCommandSequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be a predetermined location and randomly generated file names for the images:**
+
+* **Alternative 1 (current choice):** User is prompted to select their local directory and filename of choice.
+    * Pros: Allows users to categorize and structure their filenames according to their preferences.
+    * Cons: Hard to guarantee execution on user end.
+* **Alternative 2:** A directory is created in-app with randomly generated file names`.
+    * Pros: Easier for users as they have less work to do.
+    * Cons: Hard to organize and structure.
     
 --------------------------------------------------------------------------------------------------------------------
 
