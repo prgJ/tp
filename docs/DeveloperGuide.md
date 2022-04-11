@@ -599,7 +599,7 @@ where `MainWindow#captureAndSaveStrategyPanel()` is called to capture an image o
 The user is then prompted to choose a directory from their local disk to save the image in, and hence the picture is saved locally.
 
 The steps above are summarised using a sequence diagram as shown below.
-![ExportCommandDiagram](images/ExportCommandSequenceDiagram.png)
+![ExportCommandDiagram](images/ExportStrategySequenceDiagram.png)
 
 ##### Design Consideration
 
