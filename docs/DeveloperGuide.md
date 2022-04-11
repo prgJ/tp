@@ -716,6 +716,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Coach2K22 shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to edit an existing person in the list
+2.  Coach2K22 shows a list with the newly edited person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The person list is empty.
+
+  Use case ends.
+
+* 1b. The parameters supplied by the user is invalid.
+
+  * 1b1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1c. Compulsory parameters not supplied by the user.
+
+  * 1c1. Coach2K22 shows an error message.
+
+    Use case ends.
     
 **Use case: Add a strength to a person**
 
@@ -957,6 +984,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
+**Use case: Edit a task**
+
+**MSS**
+
+1.  User requests to edit an existing task from the list
+2.  Coach2K22 shows a list with the newly edited task
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task list is empty.
+
+  Use case ends.
+
+* 1b. No index supplied by the user.
+
+  * 1b1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1c. The parameters supplied by the user is invalid.
+
+  * 1c1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1d. Compulsory parameters not supplied by the user.
+
+  * 1d1. Coach2K22 shows an error message.
+
+    Use case ends.
+
 **Use case: Clear all tasks from task list**
 
 **MSS**
@@ -1190,6 +1250,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. Image is not in `png` format.
 
   Use case ends.
+
+**Use case: Export strategy tab**
+
+**MSS**
+
+1. User requests to export the current strategy tab.
+2. Coach2k22 creates the image and prompts user to save it locally.
+
+   Use case ends.
 
 ### 6.4 Non-Functional Requirements
 
