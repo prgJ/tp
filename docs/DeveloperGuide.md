@@ -13,6 +13,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -33,6 +35,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -56,6 +60,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+<div style="page-break-after: always;"></div>
+
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -66,6 +72,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 UI component
 
@@ -84,6 +92,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -98,12 +108,16 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -112,6 +126,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `Coach2K22Parser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Coach2K22Parser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -126,6 +142,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Note` objects in three separate lists for each `Person` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Storage component
 
@@ -143,6 +161,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Implementation**
 
@@ -167,6 +187,8 @@ Step 3: It then returns a newly initialised `AddPersonCommand` back to the `Logi
 
 Step 4: During the command execution, the `ModelManager#addPerson()` is called which adds the new person to an internal list and updates the GUI display. A new contact named "Johnson" with his relevant details is then shown in the person list.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
@@ -179,6 +201,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `add` command that adds tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.2 Delete Feature
 
@@ -200,6 +224,8 @@ corresponding person from all the tasks in the task list. After which, the `Mode
 
 Step 5: The GUI display is then updated to show a new contact and task list without the deleted person.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
@@ -212,6 +238,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `del` command that deletes tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Edit Feature
 
@@ -233,6 +261,8 @@ name of the corresponding person in all the tasks. After which, the `ModelManage
 
 Step 5: The GUI display is then updated to show a new contact and task list with the updated person details.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
 
@@ -245,6 +275,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `edit` command that edits tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.4 Clear Feature
 
@@ -266,6 +298,8 @@ Step 4: During the command execution, the `ModelManager#setTask()` method is cal
 
 Step 5: The GUI display is then updated to show an empty contact and new task list without any persons tagged to the tasks.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![ClearPersonSequenceDiagram](images/ClearPersonSequenceDiagram.png)
 
@@ -279,6 +313,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** A combined command for clearing tasks and persons.
   earPer  * Pros: Easier and more intuitive for the user to understand
     * Cons: Hard to implement.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.5 Add Tags Feature
 
@@ -296,6 +332,8 @@ Step 3: It then returns a newly initialised `AddPersonTagCommand` back to the `L
 
 Step 4: During the command execution, the `ModelManager#setPerson()` is called which edits the tags of the person with the user-supplied tags. The filtered person list is updated with `ModelManager#updateFilteredPersonList` to display the new information to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![AddPersonTagSequenceDiagram](images/AddPersonTagSequenceDiagram.png)
 
@@ -310,6 +348,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2 (current choice):** Implement AddPersonTagCommand independently, rewriting similar code
     * Pros: Cleaner code and less dependencies
     * Cons: Repetitive code that is not abstracted
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.6 Delete Tags Feature
 
@@ -327,6 +367,8 @@ Step 3: It then returns a newly initialised `DeletePersonTagCommand` back to the
 
 Step 4: During the command execution, the `ModelManager#setPerson()` is called which edits the tags of the person with the user-supplied tags. The filtered perosn list is updated with `ModelManager#updateFilteredPersonList` to display the new information to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![DeletePersonTagSequenceDiagram](images/DeletePersonTagSequenceDiagram.png)
 
@@ -341,6 +383,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2 (current choice):** Implement DeletePersonTagCommand independently, rewriting similar code
     * Pros: Cleaner code and less dependencies
     * Cons: Repetitive code that is not abstracted
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.7 Find Feature
 
@@ -358,6 +402,8 @@ Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Par
 Step 3: It then returns a newly initialised `FindPersonCommand` back to the `LogicManager` for command execution.
 
 Step 4: During the command execution, the `ModelManager#updateFilteredPersonList()` is called which updates the GUI display with only selected persons shown in the contact list. The command results are then generated and shown to the user.
+
+<div style="page-break-after: always;"></div>
 
 The steps above are summarised using a sequence diagram as shown below.
 ![FindPersonSequenceDiagram](images/FindPersonSequenceDiagram.png)
@@ -384,6 +430,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easier and more intuitive for the user to understand.
     * Cons: Hard to implement.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.1.7 Add Strength/Weakness/Misc Features
 
 ##### Implementation
@@ -401,6 +449,8 @@ Step 3: It then returns a newly initialised `AddStrengthCommand` back to the `Lo
 
 Step 4: During the command execution, `ModelManager#setPerson()` method is called to update the specified person in the person list with the new strength list.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `AddStrengthCommand` (and similar instances) will be generalized to `Note` and `AddNoteCommand` respectively to represent the implementation of the Add Strength, Weakness, and Misc features.
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
@@ -414,6 +464,8 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
 * **Alternative 2:** Single `note-add` command for adding to each list with provided prefixes.
     * Pros: Easier to extend and modify.
     * Cons: Not intuitive for the user and more prone to feature flaws
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.8 Delete Strength/Weakness/Misc Features
 
@@ -432,6 +484,8 @@ Step 3: It then returns a newly initialised `DeleteStrengthCommand` back to the 
 
 Step 4: During the command execution, `ModelManager#setPerson()` method is called to update the specified person in the person list with the new strength list.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `DeleteStrengthCommand` (and similar instances) will be generalized to `Note` and `AddNoteCommand` respectively to represent the implementation of the Delete Strength, Weakness, and Misc features.
 ![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
 
@@ -445,6 +499,8 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
 * **Alternative 2:** Single `note-del` command for adding to each list with provided prefixes.
   * Pros: Easier to extend and modify.
   * Cons: Not intuitive for the user and more prone to feature flaws
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.9 Sort by Strength/Weakness Features
 
@@ -463,6 +519,8 @@ Step 3: It then returns a newly initialised `SortStrengthCommand` back to the `L
 
 Step 4: During the command execution, `ModelManager#setAddressBook()` method is called to update the person list with the newly sorted list of persons based on total number of strengths in descending order.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below. Note that all occurrences of `Strength` or `SortStrengthCommand` (and similar instances) will be generalized to `Note` and `SortNoteCommand` respectively to represent the implementation of the Sort by Strength and Weakness features.
 ![SortNoteSequenceDiagram](images/SortNoteSequenceDiagram.png)
 
@@ -476,6 +534,8 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
 * **Alternative 2:** Single `sort` command for sorting the `AddressBook` and `TaskBook`.
   * Pros: Easier to extend and modify.
   * Cons: Not intuitive for the user and difficult to implement
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Task Management
 
@@ -496,6 +556,8 @@ Step 3: It then returns a newly initialised `AddTaskCommand` back to the `LogicM
 
 Step 4: During the command execution, the `ModelManager#addTask()` is called which adds the new task to an internal list and updates the GUI display. A new task named "Meet" with the subsequent date and time details is then shown in the task list.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
@@ -508,6 +570,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `add` command that adds tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Delete Feature
 
@@ -526,6 +590,8 @@ Step 3: It then returns a newly initialised `DeleteTaskCommand` back to the `Log
 
 Step 4: During the command execution, the `ModelManager#deleteTask()` is called which deletes the specified person from an internal list and updates the GUI display. A new task list without the deleted task then shown.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
 
@@ -538,6 +604,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `del` command that deletes tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.3 Add Tags Feature
 
@@ -555,8 +623,12 @@ Step 3: It then returns a newly initialised `AddTaskTagCommand` back to the `Log
 
 Step 4: During the command execution, the `ModelManager#setTask()` is called which edits the tags of the task with the user-supplied tags. The filtered task list is updated with `ModelManager#updateFilteredTaskList` to display the new information to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![AddTaskTagSequenceDiagram](images/AddTaskTagSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 
 #### 4.2.4 Delete Tags Feature
@@ -575,8 +647,12 @@ Step 3: It then returns a newly initialised `DeleteTaskTagCommand` back to the `
 
 Step 4: During the command execution, the `ModelManager#setTask()` is called which edits out the tag from the task. The filtered task list is updated with `ModelManager#updateFilteredTaskList` to display the new information to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![DeleteTaskTagSequenceDiagram](images/DeleteTaskTagSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.5 Edit Feature
 
@@ -595,6 +671,8 @@ Step 3: It then returns a newly initialised `EditTaskCommand` back to the `Logic
 
 Step 4: During the command execution, the `ModelManager#setTask()` is called which edits the specified task from an internal list and updates the GUI display. A new task list with the updated task details is then shown.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
 
@@ -608,6 +686,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `edit` command that edits tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
+<div style="page-break-after: always;"></div>
     
 #### 4.2.6 Clear Feature
 
@@ -632,6 +711,8 @@ corresponding tasks from the internal task list. Inside the function call, the `
 is also called, which updates the GUI to display the new task list. The command results are then generated and shown to
 the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![ClearTaskSequenceDiagram](images/ClearTaskSequenceDiagram.png)
 
@@ -645,6 +726,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** A combined command for clearing tasks and player.
     * Pros: Easier and more intuitive for the user to understand
     * Cons: Hard to implement.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.7 Find Feature
 
@@ -662,6 +745,8 @@ Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Par
 Step 3: It then returns a newly initialised `FindTaskCommand` back to the `LogicManager` for command execution.
 
 Step 4: During the command execution, the `ModelManager#updateFilteredTaskList()` is called which updates the GUI display with only selected tasks shown in the task list. The command results are then generated and shown to the user.
+
+<div style="page-break-after: always;"></div>
 
 The steps above are summarised using a sequence diagram as shown below.
 ![FindTaskSequenceDiagram](images/FindTaskSequenceDiagram.png)
@@ -688,6 +773,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easier and more intuitive for the user to understand.
     * Cons: Hard to implement.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.2.8 Get Person Feature
 
 ##### Implementation
@@ -705,9 +792,12 @@ Step 3: It then returns a newly initialised `GetPersonCommand` back to the `Logi
 
 Step 4: During the command execution, the `ModelManager#updateFilteredPersonList()` is called. The GUI display then updates the person list - showing only the contact details of persons tagged to the specified task.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![GetPersonSequenceDiagram](images/GetPersonSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.2.9 Sort by Date Feature
 
@@ -728,9 +818,12 @@ Step 4: During the command execution, the current list of tasks is sorted using 
 
 Step 5: The model replaces its old TaskBook with the new sorted TaskBook using `ModelManager#setTaskBook`, and the GUI updates the task list accordingly.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![SortTaskByDateSequenceDiagram](images/SortTaskByDateSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Strategic Planning
 
@@ -751,6 +844,8 @@ Step 3: It then returns a newly initialised `AddPlayerCommand` back to the `Logi
 
 Step 4: During the command execution, the `ModelManager#addPlayer()` is called which adds the new player to an internal list and updates the GUI display with a new player named "Cena" shown in the strategy board. The command results are then generated and shown to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![AddPlayerSequenceDiagram](images/AddPlayerSequenceDiagram.png)
 
@@ -764,6 +859,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2 (current choice):** A player is an object of class `Player`.
     * Pros: Easy to extend and manipulate attributes of a player.
     * Cons: Hard to implement.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2 Load Court Feature
 
@@ -782,6 +879,8 @@ Step 3: It then returns a newly initialised `LoadCourtCommand` back to the `Logi
 
 Step 4: During the command execution, the `CommandResult` object is returned to the `MainWindow`, where `CommandResult#getBackgroundImage()` is called to retrieve the image representation. Then, `MainWindow#handleLoadImage(back)` is called to update the background of the strategy board with a new image. The command results are then generated and shown to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![LoadCourtSequenceDiagram](images/LoadCourtSequenceDiagram.png)
 
@@ -795,7 +894,9 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Allow for different filetypes of images (png, jpeg, etc.).
   * Pros: Easy to extend and more intuitive for the user.
   * Cons: Hard to implement.
-    
+
+<div style="page-break-after: always;"></div>
+
 #### 4.3.3 Delete Feature
 
 ##### Implementation
@@ -813,6 +914,8 @@ Step 3: It then returns a newly initialised `DeletePlayerCommand` back to the `L
 
 Step 4: During the command execution, the `ModelManager#deletePlayer()` is called which remove the player from an internal list and updates the GUI display with a new player named "Cena" shown in the strategy board. The command results are then generated and shown to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![DeletePlayerSequenceDiagram](images/DeletePlayerSequenceDiagram.png)
 
@@ -826,6 +929,8 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2 (current choice):** Users can only remove one player at a time.
     * Pros: Easy to implement.
     * Cons: Users need to repeat the same command multiple times to remove multiple players.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.4 Move Feature
 
@@ -846,6 +951,8 @@ Step 4: During the command execution, the `ModelManager#deletePlayer()` is first
 Then the `ModelManager#addPlayer()` is called which adds the player with same name but new position to an internal list and updates the GUI display with a player named "Cena" with new position `(200, 100)` shown in the strategy board.
 At last, the command results are then generated and shown to the user.
 
+<div style="page-break-after: always;"></div>
+
 The steps above are summarised using a sequence diagram as shown below.
 ![MovePlayerSequenceDiagram](images/MovePlayerSequenceDiagram.png)
 
@@ -860,6 +967,8 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Users need to repeat the same command multiple times to move multiple players.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**
 
@@ -889,7 +998,7 @@ The steps above are summarised using a sequence diagram as shown below.
 **Value proposition**: helps busy sports coaches organise their overwhelming lists of contacts and messy weekly
 schedules, and provides them with a platform to visualise defensive and offensive plays as the game unfolds
 
-
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
@@ -911,6 +1020,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | strategic coach                 | change the position of players (x-y coordinate) during the game | ensure my team works together                                                |
 | `*`      | coach                           | drag and drop a player into a calendar                          | plan scheduled events for them according to their needs                      |
 
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3 Use cases
 
@@ -941,6 +1052,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Delete a person**
 
 **MSS**
@@ -963,6 +1076,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Coach2K22 shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Add a strength to a person**
 
@@ -995,6 +1110,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Add a weakness to a person**
 
 * This use case describes a similar interaction between the user and Coach2K22 to that of `Add a strength to a person`
@@ -1004,6 +1121,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * This use case describes a similar interaction between the user and Coach2K22 to that of `Add a strength to a person`
     * Takes in a miscellaneous note instead of a strength
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Delete a strength from a person**
 
@@ -1042,6 +1161,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Delete a weakness from a person**
 
 * This use case describes a similar interaction between the user and Coach2K22 to that of `Delete a strength from a person`
@@ -1051,6 +1172,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * This use case describes a similar interaction between the user and Coach2K22 to that of `Delete a strength from a person`
     * Takes in a misc. index instead of a strength index
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Find persons by name or tag**
 
@@ -1087,6 +1210,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Sort address book by strengths in descending order**
 
 **MSS**
@@ -1109,6 +1234,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * This use case describes a similar interaction between the user and Coach2K22 to that of `Sort address book by strengths in descending order`
     * Sorts list of persons by total number of weaknesses in descending order instead of total number of strengths
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Add a tag to a person**
 
 **MSS**
@@ -1125,6 +1252,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty
 
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Delete a tag from a person**
 
@@ -1155,6 +1284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 #### 6.3.2 Task Management
 
@@ -1181,6 +1311,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Delete a task from the task list**
 
 **MSS**
@@ -1204,6 +1336,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Clear all tasks from task list**
 
 **MSS**
@@ -1220,6 +1354,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The task list is empty.
 
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Clear all tasks for a specified date from task list**
 
@@ -1242,6 +1378,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Add a tag to a task from task list**
 
 **MSS**
@@ -1258,6 +1396,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The task list is empty.
 
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Remove a tag from a task in task list**
 
@@ -1283,6 +1423,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The index provided is invalid.
 
   Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Find tasks by name or tag**
 
@@ -1319,6 +1461,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Find persons tagged to a task**
 
 **MSS**
@@ -1348,6 +1492,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Sort task list by date**
 
 **MSS**
@@ -1362,6 +1508,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The task list is empty.
 
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 #### 6.3.3 Strategic Planning
 
@@ -1390,6 +1538,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Remove a player from the strategy board**
 
 **MSS**
@@ -1414,6 +1564,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c1. Coach2K22 shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Move a player on the strategy board**
 
@@ -1440,6 +1592,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Load new background image for strategy tab**
 
 **MSS**
@@ -1463,6 +1617,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### 6.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1483,8 +1639,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Liability-Potential** The statistics of a player's overall penalties and injuries across games
 * **DRY Principle** The *Don't Repeat Yourself (DRY)* is a Software Engineering principle of reducing repetition in the code
 
-*{More to be added}*
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **7. Appendix: Instructions for manual testing**
 
@@ -1509,6 +1666,8 @@ testers are expected to do more *exploratory* testing.
 
   2. Re-launch the app by double-clicking the jar file.<br>
      Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.3 Saving data
 
@@ -1535,6 +1694,8 @@ testers are expected to do more *exploratory* testing.
   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### 7.4 Adding a Strength/Weakness/Miscellaneous note to a person
 
 1. Adding a strength/weakness/miscellaneous (using `strength-add`, `weakness-add`, and `misc-add` respectively) note to a person while currently viewable person list has people.
@@ -1555,6 +1716,9 @@ testers are expected to do more *exploratory* testing.
 
 7. Other incorrect commands to try: `strength-add`, `misc-add x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
+
+
+<div style="page-break-after: always;"></div>
 
 ### 7.5 Deleting a Strength/Weakness/Miscellaneous note to a person
 
@@ -1580,6 +1744,7 @@ testers are expected to do more *exploratory* testing.
 8. Other incorrect commands to try: `strength-del`, `misc-del x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 
 ### 7.6 Clearing all Tasks from the task list or only those on a particular day
 
@@ -1602,6 +1767,8 @@ testers are expected to do more *exploratory* testing.
 7. Other incorrect commands to try: `clear-t d/abc`, `clear-t d`, `clear-t d/`, `...`<br>
    Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### 7.7 Sort the Contacts list by strength or weakness in descending order
 
 1. Sort the entire Contact list by strength (for `sort-strength`) or weakness (for `sort-weakness`) in descending order
@@ -1617,6 +1784,8 @@ testers are expected to do more *exploratory* testing.
 5. Test case: `sort-strength abc`<br>
    Expected: The entire contact list is sorted by total number of strengths in descending order (anything after the command word is ignored).
 
+<div style="page-break-after: always;"></div>
+
 ### 7.8 Load new image to serve as court in Strategy Tab
 
 1. Loads the given image by the provided name to serve as the court in Strategy Tab.
@@ -1631,6 +1800,8 @@ testers are expected to do more *exploratory* testing.
 
 5. Test case: `load-court test/`<br>
    Expected: Similar to previous. Even if `test.png` exists, as `/` are not allowed in command argument.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.9 Finding persons by name or tag
 
@@ -1650,6 +1821,8 @@ testers are expected to do more *exploratory* testing.
 6. Test case: `find-p`
    Expected: Error message shown in the status message denoting the arguments `find-p` takes in.
 
+<div style="page-break-after: always;"></div>
+
 ### 7.10 Finding tasks by name or tag
 
 1. Find tasks matching any of the given keywords from our contact list. You can choose to find by `NAME(s)`, `TAG(s)`, or both.
@@ -1667,6 +1840,8 @@ testers are expected to do more *exploratory* testing.
 
 6. Test case: `find-t`<br>
    Expected: Error message shown in the status message denoting the arguments `find-t` takes in.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.11 Finding persons tagged to a task
 
@@ -1689,6 +1864,8 @@ Expected: Switch to the contacts tab and show an empty contact list.
 
 4.2 Test case: `get-person` <br>
 Expected: Same as point 3.2.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.12 Adding a person
 1. Add a person into the contact list.
@@ -1721,6 +1898,8 @@ Expected: Same as point 3.2.
 
    3.5 Test case: `edit-p`<br>
    Expected: Same as previous.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.14 Clearing all contact entries
 1. Clears all entries from the contact list.
