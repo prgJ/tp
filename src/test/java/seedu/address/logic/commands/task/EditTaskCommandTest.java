@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.TASK_FIRST_INDEX;
 import static seedu.address.testutil.TypicalIndexes.TASK_SECOND_INDEX;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
@@ -76,18 +75,6 @@ public class EditTaskCommandTest {
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidAdditionOfPersons_failure() {
-        EditTaskDescriptor invalidTask = new EditTaskDescriptorBuilder().withPersons(ALICE.getName().fullName).build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(TASK_FIRST_INDEX, invalidTask);
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SCHEDULE_CONFLICT, ALICE.getName().fullName);
-        assertThrows(CommandException.class,
-                expectedMessage, () -> editTaskCommand.execute(model));
-
-        assertCommandFailure(editTaskCommand, model, expectedMessage);
     }
 
     @Test

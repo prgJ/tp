@@ -13,4 +13,5 @@ public class TypicalIndexes {
     public static final Index NOTE_SECOND_INDEX = Index.fromOneBased(2);
     public static final Index TASK_FIRST_INDEX = Index.fromOneBased(1);
     public static final Index TASK_SECOND_INDEX = Index.fromOneBased(2);
+    public static final Index TASK_TENTH_INDEX = Index.fromOneBased(10);
 }
