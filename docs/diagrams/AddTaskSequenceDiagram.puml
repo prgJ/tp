@@ -52,6 +52,22 @@ activate Model
 Model --> AddTaskCommand
 deactivate Model
 
+AddTaskCommand -> Model : hasStartEndTimeConflict()
+activate Model
+
+Model --> AddTaskCommand
+deactivate Model
+
+loop size of Task ContactList
+    loop size of TaskList
+    AddTaskCommand -> Model : hasDateTimeConflict("Meet ...")
+    activate Model
+    Model --> AddTaskCommand
+    deactivate Model
+    end
+end
+
+
 create CommandResult
 AddTaskCommand -> CommandResult
 activate CommandResult
