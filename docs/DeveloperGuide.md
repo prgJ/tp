@@ -4,8 +4,6 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Setting up, getting started**
@@ -36,8 +34,6 @@ Given below is a quick overview of main components and how they interact with ea
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-<div style="page-break-after: always;"></div>
 
 The rest of the App consists of four components.
 
@@ -175,6 +171,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Cons: Not as intuitive for the user.
 * **Alternative 2:** Single `add` command that adds tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
+    
 
 #### 3.1.2 Delete Feature
 
