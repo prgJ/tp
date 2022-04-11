@@ -5,6 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Setting up, getting started**
@@ -36,13 +37,14 @@ Given below is a quick overview of main components and how they interact with ea
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
