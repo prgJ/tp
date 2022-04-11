@@ -19,13 +19,13 @@ LogicManager -> Coach2K22Parser : parseCommand(args)
 activate Coach2K22Parser
 
 create ExportCommand
-Coach2K22Parser -> ExportCommand : s
+Coach2K22Parser -> ExportCommand : e
 activate ExportCommand
 
 ExportCommand --> Coach2K22Parser
 deactivate ExportCommand
 
-Coach2K22Parser --> LogicManager : s
+Coach2K22Parser --> LogicManager : e
 deactivate Coach2K22Parser
 
 LogicManager -> ExportCommand : execute()
