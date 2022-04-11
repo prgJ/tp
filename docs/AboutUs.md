@@ -61,4 +61,4 @@ that all documentations are in-order.
 [[portfolio](team/prgj.md)]
 
 * Role: Scheduling and tracking
-* Responsibilities: In charge of defining, assigning, adn tracking project tasks.
+* Responsibilities: In charge of defining, assigning, and tracking project tasks.
