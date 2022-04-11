@@ -701,7 +701,7 @@ The steps above are summarised using a sequence diagram as shown below.
   * Pros: Easy to extend and more intuitive for the user.
   * Cons: Hard to implement.
     
-#### 4.3.2 Delete Feature
+#### 4.3.3 Delete Feature
 
 ##### Implementation
 
@@ -732,7 +732,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easy to implement.
     * Cons: Users need to repeat the same command multiple times to remove multiple players.
 
-#### 4.3.3 Move Feature
+#### 4.3.4 Move Feature
 
 ##### Implementation
 
@@ -763,6 +763,42 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2 (current choice):** Users can only move one player at a time.
     * Pros: Easy to implement.
     * Cons: Users need to repeat the same command multiple times to move multiple players.
+
+#### 4.3.5 Export Feature
+
+##### Implementation
+
+This feature allows the user to export the strategy board as a .png image into their device.
+It is facilitated by `CommandResult` which makes use of the method `#captureAndSaveStrategyBoard()`
+from the `StrategyPanel` to export the strategy board.
+
+Given below is an example usage scenario of how the export command mechanism behaves at each step.
+
+Step 1: The user inputs `export` to into the command line to export the current strategy board.
+
+Step 2: This argument is passed into `LogicManager` which calls on `Coach2K22Parser#parseCommand()` to find a suitable
+parser class to process the user inputs.
+
+Step 3: It then returns a newly initialised `ExportCommand` back to the `LogicManager` for command execution.
+
+Step 4: During the command execution, the `CommandResult` object is returned to the `MainWindow`,
+where `MainWindow#captureAndSaveStrategyPanel()` is called to capture an image of the strategy board.
+The user is then prompted to choose a directory from their local disk to save the image in, and hence the picture is saved locally.
+
+The steps above are summarised using a sequence diagram as shown below.
+![ExportCommandDiagram](images/ExportStrategySequenceDiagram.png)
+
+##### Design Consideration
+
+**Aspect: Should there be a predetermined location and randomly generated file names for the images:**
+
+* **Alternative 1 (current choice):** User is prompted to select their local directory and filename of choice.
+  * Pros: Allows users to categorize and structure their filenames according to their preferences.
+  * Cons: Hard to guarantee execution on user end.
+* **Alternative 2:** A directory is created in-app with randomly generated file names`.
+  * Pros: Easier for users as they have less work to do.
+  * Cons: Hard to organize and structure.
+
     
 --------------------------------------------------------------------------------------------------------------------
 
@@ -845,6 +881,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Coach2K22 shows an error message.
 
       Use case ends.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to edit an existing person in the list
+2.  Coach2K22 shows a list with the newly edited person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The person list is empty.
+
+  Use case ends.
+
+* 1b. The parameters supplied by the user is invalid.
+
+  * 1b1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1c. Compulsory parameters not supplied by the user.
+
+  * 1c1. Coach2K22 shows an error message.
+
+    Use case ends.
 
 **Use case: Delete a person**
 
@@ -1085,6 +1148,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Coach2K22 shows an error message.
 
       Use case resumes at step 1.
+
+**Use case: Edit a task**
+
+**MSS**
+
+1.  User requests to edit an existing task from the list
+2.  Coach2K22 shows a list with the newly edited task
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task list is empty.
+
+  Use case ends.
+
+* 1b. No index supplied by the user.
+
+  * 1b1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1c. The parameters supplied by the user is invalid.
+
+  * 1c1. Coach2K22 shows an error message.
+
+    Use case ends.
+
+* 1d. Compulsory parameters not supplied by the user.
+
+  * 1d1. Coach2K22 shows an error message.
+
+    Use case ends.
 
 **Use case: Delete a task from the task list**
 
@@ -1367,6 +1463,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. Image is not in `png` format.
 
   Use case ends.
+
+**Use case: Export strategy tab**
+
+**MSS**
+
+1. User requests to export the current strategy tab.
+2. Coach2k22 creates the image and prompts user to save it locally.
+
+   Use case ends.
+
 
 ### 6.4 Non-Functional Requirements
 
