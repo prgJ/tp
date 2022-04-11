@@ -26,7 +26,7 @@ activate LoadCourtCommandParser
 LoadCourtCommandParser --> Coach2K22Parser
 deactivate LoadCourtCommandParser
 
-Coach2K22Parser -> LoadCourtCommandParser : parse()
+Coach2K22Parser -> LoadCourtCommandParser : parse(args)
 activate LoadCourtCommandParser
 
 create LoadCourtCommand
