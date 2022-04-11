@@ -7,26 +7,20 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **1. Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **2. Setting up, getting started**
+## **1. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **3. Design**
+## **2. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### 3.1 Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +61,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 3.2 UI component
+### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +78,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### 3.3 Logic component
+### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -113,7 +107,7 @@ How the parsing works:
 * When called upon to parse a user command, the `Coach2K22Parser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Coach2K22Parser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### 3.4 Model component
+### 2.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -127,7 +121,7 @@ The `Model` component,
 * stores `Note` objects in three separate lists for each `Person` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### 3.5 Storage component
+### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -138,19 +132,19 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### 3.6 Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **4. Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Contact Management
+### 3.1 Contact Management
 
-#### 4.1.1 Add Feature
+#### 3.1.1 Add Feature
 
 ##### Implementation
 
@@ -180,7 +174,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `add` command that adds tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
-#### 4.1.2 Delete Feature
+#### 3.1.2 Delete Feature
 
 ##### Implementation
 
@@ -213,7 +207,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `del` command that deletes tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
-#### 4.1.3 Edit Feature
+#### 3.1.3 Edit Feature
 
 ##### Implementation
 
@@ -246,7 +240,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `edit` command that edits tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
-#### 4.1.4 Clear Feature
+#### 3.1.4 Clear Feature
 
 ##### Implementation
 
@@ -280,7 +274,7 @@ The steps above are summarised using a sequence diagram as shown below.
   earPer  * Pros: Easier and more intuitive for the user to understand
     * Cons: Hard to implement.
 
-#### 4.1.5 Add Tags Feature
+#### 3.1.5 Add Tags Feature
 
 ##### Implementation
 This feature allows the user to add tags to contacts in the list. It is facilitated by `ModelManager` which
@@ -311,7 +305,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Cleaner code and less dependencies
     * Cons: Repetitive code that is not abstracted
 
-#### 4.1.6 Find Feature
+#### 3.1.6 Find Feature
 
 ##### Implementation
 
@@ -353,7 +347,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easier and more intuitive for the user to understand.
     * Cons: Hard to implement.
 
-#### 4.1.7 Add Strength/Weakness/Misc Features
+#### 3.1.7 Add Strength/Weakness/Misc Features
 
 ##### Implementation
 
@@ -384,7 +378,7 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
     * Pros: Easier to extend and modify.
     * Cons: Not intuitive for the user and more prone to feature flaws
 
-#### 4.1.8 Delete Strength/Weakness/Misc Features
+#### 3.1.8 Delete Strength/Weakness/Misc Features
 
 ##### Implementation
 
@@ -415,7 +409,7 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
   * Pros: Easier to extend and modify.
   * Cons: Not intuitive for the user and more prone to feature flaws
 
-#### 4.1.10 Sort by Strength/Weakness Features
+#### 3.1.10 Sort by Strength/Weakness Features
 
 ##### Implementation
 
@@ -446,9 +440,9 @@ The steps above are summarised using a sequence diagram as shown below. Note tha
   * Pros: Easier to extend and modify.
   * Cons: Not intuitive for the user and difficult to implement
 
-### 4.2 Task Management
+### 3.2 Task Management
 
-#### 4.2.1 Add Feature
+#### 3.2.1 Add Feature
 
 ##### Implementation
 
@@ -478,7 +472,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `add` command that adds tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
-#### 4.2.2 Delete Feature
+#### 3.2.2 Delete Feature
 
 ##### Implementation
 
@@ -508,7 +502,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `del` command that deletes tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
 
-#### 4.2.3 Edit Feature
+#### 3.2.3 Edit Feature
 
 ##### Implementation
 
@@ -538,7 +532,7 @@ The steps above are summarised using a sequence diagram as shown below.
 * **Alternative 2:** Single `edit` command that edits tasks/persons depending on parameters.
     * Pros: More intuitive for the user.
     
-#### 4.2.4 Clear Feature
+#### 3.2.4 Clear Feature
 
 ##### Implementation
 
@@ -575,7 +569,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easier and more intuitive for the user to understand
     * Cons: Hard to implement.
 
-#### 4.2.5 Find Feature
+#### 3.2.5 Find Feature
 
 ##### Implementation
 
@@ -617,7 +611,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easier and more intuitive for the user to understand.
     * Cons: Hard to implement.
 
-#### 4.2.6 Get Person Feature
+#### 3.2.6 Get Person Feature
 
 ##### Implementation
 
@@ -637,9 +631,9 @@ Step 4: During the command execution, the `ModelManager#updateFilteredPersonList
 The steps above are summarised using a sequence diagram as shown below.
 ![GetPersonSequenceDiagram](images/GetPersonSequenceDiagram.png)
     
-### 4.3 Strategic Planning
+### 3.3 Strategic Planning
 
-#### 4.3.1 Add Feature
+#### 3.3.1 Add Feature
 
 ##### Implementation
 
@@ -670,7 +664,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easy to extend and manipulate attributes of a player.
     * Cons: Hard to implement.
 
-#### 4.3.2 Load Court Feature
+#### 3.3.2 Load Court Feature
 
 ##### Implementation
 
@@ -701,7 +695,7 @@ The steps above are summarised using a sequence diagram as shown below.
   * Pros: Easy to extend and more intuitive for the user.
   * Cons: Hard to implement.
     
-#### 4.3.3 Delete Feature
+#### 3.3.3 Delete Feature
 
 ##### Implementation
 
@@ -732,7 +726,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easy to implement.
     * Cons: Users need to repeat the same command multiple times to remove multiple players.
 
-#### 4.3.4 Move Feature
+#### 3.3.4 Move Feature
 
 ##### Implementation
 
@@ -764,7 +758,7 @@ The steps above are summarised using a sequence diagram as shown below.
     * Pros: Easy to implement.
     * Cons: Users need to repeat the same command multiple times to move multiple players.
 
-#### 4.3.5 Export Feature
+#### 3.3.5 Export Feature
 
 ##### Implementation
 
@@ -802,7 +796,7 @@ The steps above are summarised using a sequence diagram as shown below.
     
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -812,9 +806,9 @@ The steps above are summarised using a sequence diagram as shown below.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Appendix: Requirements**
+## **5. Appendix: Requirements**
 
-### 6.1 Product scope
+### 5.1 Product scope
 
 **Target user profile**:  
 
@@ -832,7 +826,7 @@ schedules, and provides them with a platform to visualise defensive and offensiv
 
 
 
-### 6.2 User stories
+### 5.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -853,11 +847,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | coach                           | drag and drop a player into a calendar                          | plan scheduled events for them according to their needs                      |
 
 
-### 6.3 Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is `Coach2K22` and the **Actor** is the `user`, unless specified otherwise)
 
-#### 6.3.1 Contact Management
+#### 5.3.1 Contact Management
 
 **Use case: Add a person**
 
@@ -1124,7 +1118,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-#### 6.3.2 Task Management
+#### 5.3.2 Task Management
 
 **Use case: Add a task to the task list**
 
@@ -1364,7 +1358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### 6.3.3 Strategic Planning
+#### 5.3.3 Strategic Planning
 
 **Use case: Add a new player to the strategy board**
 
@@ -1474,7 +1468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 
-### 6.4 Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -1485,7 +1479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
-### 6.5 Glossary
+### 5.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -1494,10 +1488,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Liability-Potential** The statistics of a player's overall penalties and injuries across games
 * **DRY Principle** The *Don't Repeat Yourself (DRY)* is a Software Engineering principle of reducing repetition in the code
 
-*{More to be added}*
 --------------------------------------------------------------------------------------------------------------------
 
-## **7. Appendix: Instructions for manual testing**
+## **6. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -1506,7 +1499,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 7.1 Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -1521,7 +1514,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### 7.2 Deleting a person
+### 6.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -1536,14 +1529,14 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
    
-### 7.3 Saving data
+### 6.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 
-### 7.4 Adding a Strength/Weakness/Miscellaneous note to a person
+### 6.4 Adding a Strength/Weakness/Miscellaneous note to a person
 
 1. Adding a strength/weakness/miscellaneous (using `strength-add`, `weakness-add`, and `misc-add` respectively) note to a person while currently viewable person list has people.
 
@@ -1564,7 +1557,7 @@ testers are expected to do more *exploratory* testing.
 7. Other incorrect commands to try: `strength-add`, `misc-add x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
-### 7.5 Deleting a Strength/Weakness/Miscellaneous note to a person
+### 6.5 Deleting a Strength/Weakness/Miscellaneous note to a person
 
 1. Deleting a strength/weakness/miscellaneous note (using `strength-del`, `weakness-del`, and `misc-del` respectively) to a person while currently viewable person list has people.
 
@@ -1589,7 +1582,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 
 
-### 7.6 Clearing all Tasks from the task list or only those on a particular day
+### 6.6 Clearing all Tasks from the task list or only those on a particular day
 
 1. Empty the task list or remove only those that correspond with a given day.
 
@@ -1610,7 +1603,7 @@ testers are expected to do more *exploratory* testing.
 7. Other incorrect commands to try: `clear-t d/abc`, `clear-t d`, `clear-t d/`, `...`<br>
    Expected: Similar to previous.
 
-### 7.7 Sort the Contacts list by strength or weakness in descending order
+### 6.7 Sort the Contacts list by strength or weakness in descending order
 
 1. Sort the entire Contact list by strength (for `sort-strength`) or weakness (for `sort-weakness`) in descending order
 
@@ -1625,7 +1618,7 @@ testers are expected to do more *exploratory* testing.
 5. Test case: `sort-strength abc`<br>
       Expected: The entire contact list is sorted by total number of strengths in descending order (anything after the command word is ignored).
 
-### 7.8 Load new image to serve as court in Strategy Tab
+### 6.8 Load new image to serve as court in Strategy Tab
 
 1. Loads the given image by the provided name to serve as the court in Strategy Tab.
 
@@ -1639,3 +1632,13 @@ testers are expected to do more *exploratory* testing.
 
 5. Test case: `load-court test/`<br>
    Expected: Similar to previous. Even if `test.png` exists, as `/` are not allowed in command argument.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **7. Acknowledgements**
+
+* http://java-buddy.blogspot.com/2013/07/move-node-to-front.html
+* https://stackoverflow.com/questions/38028825/javafx-save-view-of-pane-to-image
+* https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+
+--------------------------------------------------------------------------------------------------------------------
