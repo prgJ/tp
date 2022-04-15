@@ -15,9 +15,7 @@ Coach2K22 is a desktop app to helps busy sports coaches **organise their overwhe
 
 ## **2. Quick Start**
 
-This section answers all your question on how to get started! This application is **optimized for use via a Command Line 
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Coach2K22 
-can get your administrative tasks done faster than it takes to learn the interface of traditional GUI apps!
+This section answers all your question on how to get started! This application is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Coach2K22 can get your administrative tasks done faster than it takes to learn the interface of traditional GUI apps!
 
 ### 2.1 Installation Instructions
 
@@ -30,8 +28,8 @@ before starting.
 
 3.Double-click the file to start the app, and you're done!
 
-Expect a GUI similar to the image below should appear in a few seconds.
-Note how the app contains some sample data!<br>
+A GUI similar to the image below should appear in a few seconds.
+Note how the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
 ### 2.2 Using the application
@@ -47,15 +45,15 @@ For reference, below is a labelled diagram of what each section is.
 
 3. Scroll through each list in the Contact and Schedule tabs to view other items in the list.
 
-4. Refer to the [Features](#2-features) below for details of each command, as well as their formats. <br>
+4. Refer to the [Features](#4-features) below for details of each command, as well as their formats. <br>
 
 Contacts and Schedule related tabs have automatic saving features and changes to it will be saved without any user action.
 Strategy tabs have the option to be explicitly saved using the `export` command.
-For more details head to the Features section!
+For more details head to the [Features](#4-features) section!
 
 <div markdown="span" class="alert alert-primary">
-:bulb: 
-<strong>Note:</strong> Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
+
+:bulb: **Note:** Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
 </div>
 
 ### 2.2 CLI tutorial
@@ -76,10 +74,18 @@ Here's a quick tutorial to get you started!
 6. If the command entered is valid, it should disappear from the CLI box upon pressing enter. 
 A message indicating successful completion will pop up. 
 
+6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+
+![add-task-true](images/add-task-true.png)
+
 7. If the command entered is invalid it will turn red and remain in the CLI box upon pressing enter. An error message 
 detailing what might have gone wrong will pop up instead!
 
-7. For more information on the commands Refer to the [Features](#4-features) section below for more information and details on the command formats Coach2k22 accepts!
+7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+
+![add-task-false](images/add-task-false.png)
+
+8.For more information on the commands Refer to the [Features](#4-features) section below for more information and details on the command formats Coach2k22 accepts!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,7 +195,9 @@ Adds a person to our contact list.
 **Examples:**
 * `add-p n/Johnson p/83918273 a/Woodlands Avenue 4 e/johnson@gmail.com t/Hustlers`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
@@ -604,7 +612,18 @@ Load a new background image in the strategy tab.
 **Format:** `load-court IMAGE_NAME`
 
 Examples:
-* `load-court basketball` loads would set the image from the filepath `courts/basketball.png` as the background image of strategy tab (if it exists).
+
+`load-court basketball` loads would set the image from the filepath `courts/basketball.png` as the background image of strategy tab (if it exists). Visually it would look as follows:
+
+Upon typing `load-court basketball`, without pressing enter, the GUI should look as follows:
+
+![load-court-ex1](images/load-court-ex1.png)
+
+Upon pressing enter however, the image will be loaded from `courts/basketball.png` and set as the background for the Strategy board, as seen below!
+
+![load-court-ex2](images/load-court-ex2.png)
+
+Then just select your desired directory and filename and you're done!
 
 <div markdown="block" class="alert alert-info">
 
