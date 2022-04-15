@@ -12,54 +12,77 @@ title: User Guide
 ## **1. Introduction**
 Coach2K22 is a desktop app that helps busy sports coaches **organise their overwhelming lists of contacts and messy weekly schedules.** It also provides them with a **platform to visualise defensive and offensive plays** as the game unfolds.
 
-### 1.1 Installation Instructions
+## **2. Quick Start**
 
-This application is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Coach2K22 can get your administrative tasks done faster than traditional GUI apps.
+This section answers all your question on how to get started! This application is **optimized for use via a Command Line 
+Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Coach2K22 
+can get your administrative tasks done faster than it takes to learn the interface of traditional GUI apps!
 
-1. Download the latest '.jar' file from [here](https://github.com/AY2122S2-CS2103T-W14-2/tp/releases).
+### 2.1 Installation Instructions
 
-2. Copy the file to the folder you want to use as the _home folder_ for your copy of Coach2k22.
+Installation is fairly simple, just follow these steps. Do ensure you have Java `11` or above installed in your computer 
+before starting! 
 
-3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1.Download the latest '.jar' file from [here](https://github.com/AY2122S2-CS2103T-W14-2/tp/releases).
 
-4. Type your commands in the Command Line Interface box (CLI) labeled below. You can switch between the three tabs (Contact, Schedule, Strategy tabs).<br>
-   ![Ui-labeled](images/Ui-Labeled.png)
+2.Copy the file to the folder you want to use as the _home folder_ for your copy of Coach2k22.
 
-5. Refer to the [Features](#3-features) below for details of each command, as well as their formats.
+3.Double-click the file to start the app, and you're done!
 
-6. Contacts and Schedule related tabs will be saved automatically (Strategy needs to be explicitly saved).
+Expect a GUI similar to the image below should appear in a few seconds.
+Note how the app contains some sample data!<br>
+![Ui](images/Ui.png)
+
+### 2.2 Using the application
+
+The GUI is designed to ensure all necessary information is present at first glance. Follow along to find out what each section is and does.
+
+For reference, below is a labelled diagram of what each section is.
+![Ui-labeled](images/Ui-Labeled.png)
+
+1. Type your commands in the Command Line Interface box (CLI) labeled above.
+
+2. You can switch between the three tabs (Contact, Schedule, Strategy tabs).
+
+3. Scroll through each list in the Contact and Schedule tabs to view other items in the list.
+
+4. Refer to the [Features](#2-features) below for details of each command, as well as their formats. <br>
+
+Contacts and Schedule related tabs have automatic saving features and will be saved without any user action.
+Strategy tabs have the option to be explicitly saved using the `export` command.
+For more details head to the Features section!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
 </div>
 
-### 1.2 CLI tutorial
+### 2.2 CLI tutorial
 
-You may not have come across a Command Line Interface (CLI) based application before.
-Here is a quick tutorial to get you started!
+For those of you that may be encountering a Command Line Interface (CLI) based application for the first time – fret not – it is incredibly simple. 
+Here's a quick tutorial to get you started!
 
-1. Follow the instructions above in section 1.1 to download the Coach2k22 application to a directory of your choice.
+1. Follow the instructions above in section 2.1 to download the Coach2k22 application to a directory of your choice.
 
 2. Double-click the file to launch the application.
 
-3. Upon launch, the GUI (as seen in section 1.1 step 3) will be visible to the user.
+3. Upon launch, the GUI like in section 2.1 will be visible to you!
 
-4. Hover your cursor over the box labelled CLI (as seen in section 1.1 step 4) and click on it once.
+4. Hover your cursor over the CLI input box and click on it once.
 
-5. Users can now use their keyboard to type commands into the CLI.
+5. You can now use their keyboard to type commands into the CLI.
 
 6. Refer to the [Features](#3-features) section below for more information and details on the command formats Coach2k22 accepts!
 
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **2. About the User Guide**
+## **3. About the User Guide**
 
-### 2.1 Purpose
-This User Guide provides an in-depth documentation of our product to help familarise you with using Coach2K22 for your organisation purposes. You can refer to [Structure](#22-structure) to find out what's included in this document.
+### 3.1 Purpose
+This User Guide provides an in-depth documentation of our product to help familarise you with using Coach2K22 for your organisation purposes. 
+You can refer to [Structure](#22-structure) to find out what's included in this document.
 
-### 2.2 Structure
+### 3.2 Structure
 This User Guide consist of five sections: [Introduction](#1-introduction), [About the User Guide](#2-about-the-user-guide), [Features](#3-features), [FAQ](#4-faq), and [Command Summary](#5-command-summary).
 
 * The **Introduction** section provides a general overview of what our product does, installation instructions, and a quick tutorial to get you started.
