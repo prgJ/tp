@@ -761,7 +761,6 @@ Then just select your desired directory and filename and you're done!
 :bulb: <strong>Note:</strong> The above GUI may look slightly different depending on your operating system.
 </div>
 
-<div style="page-break-after: always"></div>
 
 ### 4.4 General
 
