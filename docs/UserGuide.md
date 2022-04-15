@@ -82,14 +82,14 @@ Here's a quick tutorial to get you started!
 6. If the command entered is valid, it should disappear from the CLI box upon pressing enter. 
 A message indicating successful completion will pop up. 
 
-   6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+&nbsp;&nbsp; &nbsp; 6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below!
 
 ![add-task-true](images/add-task-true.png)
 
 7. If the command entered is invalid it will turn red and remain in the CLI box upon pressing enter. An error message 
 detailing what might have gone wrong will pop up instead!
 
-   7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+&nbsp;&nbsp;&nbsp; 7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below!
 
 ![add-task-false](images/add-task-false.png)
 
@@ -506,8 +506,6 @@ Delete a task from our task list.
 * Index values start from 1 and are always positive integers.
 
 </div>
-
-<div style="page-break-after: always"></div>
 
 #### 4.2.4 Editing a task: `edit-t`
 
