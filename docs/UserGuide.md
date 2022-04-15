@@ -71,7 +71,13 @@ Here's a quick tutorial to get you started!
 
 5. You can now use their keyboard to type commands into the CLI.
 
-6. Refer to the [Features](#3-features) section below for more information and details on the command formats Coach2k22 accepts!
+6. If the command entered is valid, it should disappear from the CLI box upon pressing enter! 
+A message indicating successful completion will pop up. 
+
+7. If the command entered is invalid it will remain in the CLI box upon pressing enter. An error message 
+detailing what might have gone wrong will pop up instead!
+
+7. For more information on the commands Refer to the [Features](#3-features) section below for more information and details on the command formats Coach2k22 accepts!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,8 +85,11 @@ Here's a quick tutorial to get you started!
 ## **3. About the User Guide**
 
 ### 3.1 Purpose
-This User Guide provides an in-depth documentation of our product to help familarise you with using Coach2K22 for your organisation purposes. 
-You can refer to [Structure](#22-structure) to find out what's included in this document.
+This User Guide is meant to help you get started in your journey with Coach2k22! Along with providing an in-depth 
+documentation of our product to help familarise you with the features, it is also a one stop for any difficulties 
+you might face as well!
+
+Refer to [Structure](#22-structure) to get a birds eye view on what's included in this document.
 
 ### 3.2 Structure
 This User Guide consist of five sections: [Introduction](#1-introduction), [About the User Guide](#2-about-the-user-guide), [Features](#3-features), [FAQ](#4-faq), and [Command Summary](#5-command-summary).
@@ -89,13 +98,13 @@ This User Guide consist of five sections: [Introduction](#1-introduction), [Abou
 
 * The **About the User Guide** section introduces you to icons and unfamiliar terms used throughout this document.
 
-* The **Features** section provides you with step-by-step instructions for every product feature.
+* The **Features** section provides you with step-by-step instructions for every feature.
 
 * The **FAQ** section provides you with the answer to commonly asked questions.
 
-* The **Command Summary** section provides a summary to every feature's format and usage examples.
+* The **Command Summary** section provides a quick summary to every feature's format! It includes usage examples to get started as well.
 
-A table of content is also provided at the start of this document to allow you to navigate to each section easily.
+A table of content is also provided at the start of this document to allow you to navigate to each section and subsection easily.
 
 ### 2.3 User Guide Icons
 The table below shows the icons used in this document with its associated meaning.
