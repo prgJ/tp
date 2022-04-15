@@ -8,6 +8,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always"></div>
 
 ## **1. Introduction**
@@ -32,6 +33,7 @@ before starting.
 A GUI similar to the image below should appear in a few seconds.
 Note how the app contains some sample data.<br>
 ![Ui](images/Ui.png)
+
 
 <div style="page-break-after: always"></div>
 
@@ -58,6 +60,7 @@ For more details head to the [Features](#4-features) section!
 
 :bulb: **Note:** Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
 </div>
+
 
 <div style="page-break-after: always"></div>
 
@@ -173,6 +176,7 @@ The tips in this section include noteworthy information about the command format
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always"></div>
 
 ## **4. Features**
@@ -204,6 +208,7 @@ Adds a person to our contact list.
 
 **Examples:**
 * `add-p n/Johnson p/83918273 a/Woodlands Avenue 4 e/johnson@gmail.com t/Hustlers`
+
 
 <div markdown="span" class="alert alert-primary">
 
