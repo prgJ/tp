@@ -53,8 +53,9 @@ Contacts and Schedule related tabs have automatic saving features and changes to
 Strategy tabs have the option to be explicitly saved using the `export` command.
 For more details head to the Features section!
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
+<div markdown="span" class="alert alert-primary">
+:bulb: 
+<strong>Note:</strong> Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
 </div>
 
 ### 2.2 CLI tutorial
@@ -135,7 +136,7 @@ The Command format includes two major sections, as detailed in this image below:
 
 ![CommandFormatSections](images/CommandFormatSections.png)
 
-All feature command formats minimally include a 'Command' section. Each feature has its own specifications on what needs to be included in the 'Prefix and Parameter' section, however, they all follow some general principles, as detailed below! 
+All feature command formats minimally include a 'Command' section. Each feature has its own specifications on what needs to be included in the 'Prefix and Parameter' section, however, they all follow some general principles as detailed below! 
 The tips in this section include noteworthy information about the command format that will be useful in guiding you through the [Features](#4-features) section.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -160,16 +161,16 @@ The tips in this section include noteworthy information about the command format
 
 ## **4. Features**
 
-This section contains an exhaustive list of commands supported by Coach2K22.
+Now for the good part! This section contains an exhaustive list of commands supported by Coach2K22.
 They are further classified into the following categories based on their functions:
 
-* [Contact Management](#31-contact-management) are commands that allow you to manage your contacts efficiently.
+* [Contact Management](#41-contact-management) are commands that allow you to manage your contacts efficiently.
 
-* [Task Management](#32-task-management) are commands that allow you to manage your ongoing tasks.
+* [Task Management](#42-task-management) are commands that allow you to manage your ongoing tasks.
 
-* [Strategic Planning](#33-strategic-planning) are commands that allow you to manipulate the strategy board.
+* [Strategic Planning](#43-strategic-planning) are commands that allow you to manipulate the strategy board.
 
-* [General](#34-general) are commands that does not fit into any of the aforementioned categories.
+* [General](#44-general) are commands that do not fit into any of the aforementioned categories.
 
 ### 4.1 Contact Management
 
@@ -698,6 +699,22 @@ Exports current view of the strategy board as an image to the users local device
 
 **Format:** `export`
 
+**Examples:**
+
+Upon typing `export` for a pre-designed strategy board, the GUI should look as follows:
+
+![export-ex1](images/export-ex1.png)
+
+Once pressing enter however, you should be directed to your directory filechooser, similar to the diagram shown below.
+
+![export-ex2](images/export-ex2.png)
+
+Then just select your desired directory and filename and you're done!
+
+<div markdown="span" class="alert alert-primary">
+:bulb: <strong>Note:</strong> The above GUI may look slightly different depending on your operating system.
+</div>
+
 ### 4.4 General
 
 #### 4.4.1 Viewing help: `help`
@@ -722,22 +739,28 @@ Exits the program.
 
 **Q**: What is the purpose of having a separate command for listing player strengths and weaknesses<br>
 **A**: These functions allow coach to judge players based on their respective strengths/weaknesses for improved judgement of abilities, analyzing their liabilities, and strategically choosing the right player for the right purpose.
+
+**Q**: Why can't I load a court using the `load-court` command despite using the right command format?<br>
+**A**: Check to see if the /courts directory in the application has the aforementioned court file! If not, do remember to upload that in. 
+
+**Q**: I saved an image using `export` before but after saving another image the first one disappeared?<br>
+**A**: Make sure to change the file name when you download the image to your local directory. Oftentimes if you have two images with the same name in the same place the new file replaces the older one. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. Command summary**
 
 This section gives you a summary of all the available commands in the application.
 They are classified into the following categories by command usage:
-* [Contact Management](#51-contact-management)
-* [Task Management](#52-task-management)
-* [Strategic Planning](#53-strategic-planning)
-* [General](#54-general)
 
-You can find the corresponding command format and maybe one example for the actions you are able to perform on the application.
+* [Contact Management](#61-contact-management)
+* [Task Management](#62-task-management)
+* [Strategic Planning](#63-strategic-planning)
+* [General](#64-general)
+
+You can find the corresponding command format and an example for the actions you are able to perform on the application.
 
 ### 6.1 Contact Management
-This section will list all the commands available for contact management in the application.
-The actions here are all related to managing the contacts of the user.
+This section lists all the commands available for contact management in the application.
 
 | Action                   | Format, Examples                                                                                                                                             |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -760,8 +783,7 @@ The actions here are all related to managing the contacts of the user.
 
 
 ### 6.2 Task Management
-This section will list all the commands available for task management in the application.
-The actions here are all related to managing the tasks of the user.
+This section lists all the commands available for task management in the application.
 
 | Action           | Format, Examples                                                                  |
 |------------------|-----------------------------------------------------------------------------------|
@@ -778,8 +800,7 @@ The actions here are all related to managing the tasks of the user.
 
 
 ### 6.3 Strategic Planning
-This section will list all the commands available for strategic planning in the application.
-The actions here are all related to performing the strategic planning.
+This section lists all the commands available for performing strategic planning in the application.
 
 | Action            | Format, Examples                                                        |
 |-------------------|-------------------------------------------------------------------------|
@@ -791,8 +812,7 @@ The actions here are all related to performing the strategic planning.
 
 
 ### 6.4 General
-This section will list all the commands available for general usage in the application.
-The actions here are all related to general usage.
+This section lists all the commands available for general usage.
 
 | Action       | Format, Examples        |
 |--------------|-------------------------|
