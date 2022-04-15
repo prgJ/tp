@@ -5,9 +5,10 @@ title: User Guide
 [![codecov](https://codecov.io/gh/AY2122S2-CS2103T-W14-2/tp/branch/master/graph/badge.svg?token=N3IGRH3TN0)](https://codecov.io/gh/AY2122S2-CS2103T-W14-2/tp)
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## **1. Introduction**
 Welcome to the Coach2k22 User guide! 
@@ -22,17 +23,19 @@ This section answers all your question on how to get started! This application i
 Installation is fairly simple, just follow these steps. Do ensure you have Java `11` or above installed in your computer 
 before starting.
 
-1.Download the latest '.jar' file from [here](https://github.com/AY2122S2-CS2103T-W14-2/tp/releases).
+1. Download the latest 'Coach2k22.jar' file from [here](https://github.com/AY2122S2-CS2103T-W14-2/tp/releases).
 
-2.Copy the file to the folder you want to use as the _home folder_ for your copy of Coach2k22.
+2. Copy the file to the folder you want to use as the _home folder_ for your copy of Coach2k22.
 
-3.Double-click the file to start the app, and you're done!
+3. Double-click the file to start the app, and you're done!
 
 A GUI similar to the image below should appear in a few seconds.
 Note how the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-### 2.2 Using the application
+<div style="page-break-after: always"></div>
+
+### 2.2 Navigating around the application
 
 The GUI is designed to ensure all necessary information is present at first glance. Follow along to find out what each section is and does.
 
@@ -56,7 +59,9 @@ For more details head to the [Features](#4-features) section!
 :bulb: **Note:** Coach2K22 can run on computers with Windows and MacOS (_Requires at least 1GB RAM and 500 MB of storage_).
 </div>
 
-### 2.2 CLI tutorial
+<div style="page-break-after: always"></div>
+
+### 2.3 CLI tutorial
 
 For those of you that may be encountering a Command Line Interface (CLI) based application for the first time – fret not – it is incredibly simple. 
 Here's a quick tutorial to get you started!
@@ -74,27 +79,27 @@ Here's a quick tutorial to get you started!
 6. If the command entered is valid, it should disappear from the CLI box upon pressing enter. 
 A message indicating successful completion will pop up. 
 
-6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+   6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below!
 
 ![add-task-true](images/add-task-true.png)
 
 7. If the command entered is invalid it will turn red and remain in the CLI box upon pressing enter. An error message 
 detailing what might have gone wrong will pop up instead!
 
-7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below!
+   7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below!
 
 ![add-task-false](images/add-task-false.png)
 
-8.For more information on the commands Refer to the [Features](#4-features) section below for more information and details on the command formats Coach2k22 accepts!
+8. For more information on the commands Refer to the [Features](#4-features) section below for more information and details on the command formats Coach2k22 accepts!
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 
 ## **3. About the User Guide**
 
 ### 3.1 Purpose
 This User Guide is meant to help you get started in your journey with Coach2k22! Along with providing an in-depth 
-documentation of our product to help familarise you with the features, it is also a one stop for any difficulties 
+documentation of our product to help familiarise you with the features, it is also a one-stop solution for any difficulties 
 you might face as well!
 
 Refer to [Structure](#32-structure) to get a birds eye view on what's included in this document.
@@ -116,6 +121,8 @@ This User Guide consist of five sections: [Introduction](#1-introduction), [Quic
 
 A table of content is also provided at the start of this document to allow you to navigate to each section and subsection easily.
 
+<div style="page-break-after: always"></div>
+
 ### 3.3 User Guide Icons
 The table below shows the icons used in this document with its associated meaning.
 
@@ -135,6 +142,8 @@ The table below describes the terms used in this document with its accompanying 
 |**Prefix**          | An indicator used to mark the start of a *Parameter* <br> e.g., `n/` `st/`                     |
 |**Parameter**       | A value supplied by the user in a command <br> e.g., `NAME` `START_TIME`                       |
 |**Command Format**  | The *Command Format* describes the arrangement of the *Command*, *Prefix*, and *Parameter* <br> e.g., `add-p n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL` |
+
+<div style="page-break-after: always"></div>
 
 ### 3.5 Notes about the Command Format
 
@@ -164,6 +173,7 @@ The tips in this section include noteworthy information about the command format
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## **4. Features**
 
@@ -210,6 +220,8 @@ Delete a person from our contact list.
 **Examples:**
 * `del-p 1` deletes the first person in the contact list.
 
+<div style="page-break-after: always"></div>
+
 #### 4.1.4 Editing a person: `edit-p`
 
 Edit a person from our contact list.
@@ -243,6 +255,8 @@ Add tags to a selected person from our contact list.
 
 </div>
 
+
+<div style="page-break-after: always"></div>
 
 #### 4.1.7 Deleting a tag : `tag-del-p`
 
@@ -288,6 +302,7 @@ Users can choose to find by `NAME`(s), `TAG`(s), or both.
 
 </div>
 
+<div style="page-break-after: always"></div>
 
 #### 4.1.9 Adding a strength : `strength-add`
 
@@ -329,6 +344,7 @@ Add a weakness to a selected person from our contact list.
 
 </div>
 
+<div style="page-break-after: always"></div>
 
 #### 4.1.11 Adding a miscellaneous note : `misc-add`
 
@@ -371,6 +387,7 @@ Delete a strength from a selected person from our contact list.
 
 </div>
 
+<div style="page-break-after: always"></div>
 
 #### 4.1.13 Deleting a weakness : `weakness-del`
 
@@ -426,6 +443,8 @@ Sorts the list of persons by total strengths in descending order.
 Sorts the list of persons by total weaknesses in descending order.
 
 **Format:** `sort-weaknesses`
+
+<div style="page-break-after: always"></div>
 
 ### 4.2 Task Management
 
@@ -483,6 +502,8 @@ Delete a task from our task list.
 
 </div>
 
+<div style="page-break-after: always"></div>
+
 #### 4.2.4 Editing a task: `edit-t`
 
 Edit a task from our task list.
@@ -511,6 +532,8 @@ Clear all tasks or tasks on a selected date from our task list.
 * Date must be in the format `dd-mm-yyyy`.
 
 </div>
+
+<div style="page-break-after: always"></div>
 
 #### 4.2.6 Adding a tag : `tag-add-t`
 
@@ -547,6 +570,7 @@ Delete a tag from a selected task in our task list.
 
 </div>
 
+<div style="page-break-after: always"></div>
 
 #### 4.2.8 Locating tasks by keyword : `find-t`
 
@@ -603,6 +627,8 @@ Sort the task list by date, in order of the task whose deadline is earlier.
 
 **Format:** `sort-date`
 
+<div style="page-break-after: always"></div>
+
 ### 4.3 Strategic Planning
 
 #### 4.3.1 Load new background image : `load-court`
@@ -619,6 +645,8 @@ Upon typing `load-court basketball`, without pressing enter, the GUI should look
 
 ![load-court-ex1](images/load-court-ex1.png)
 
+<div style="page-break-after: always"></div>
+
 Upon pressing enter however, the image will be loaded from `courts/basketball.png` and set as the background for the Strategy board, as seen below!
 
 ![load-court-ex2](images/load-court-ex2.png)
@@ -634,6 +662,8 @@ Then just select your desired directory and filename and you're done!
 * Loads the given image from the filepath `courts/IMAGE_NAME.png`.
 
 </div>
+
+<div style="page-break-after: always"></div>
 
 #### 4.3.2 Adding new players: `add-player`
 
@@ -676,6 +706,8 @@ Remove a player from the strategy board.
 **Examples:**
 * `del-player Messi` removes the player named `Messi` from the strategy board if such player exists on the strategy board.
 
+<div style="page-break-after: always"></div>
+
 #### 4.3.4 Moving a player to a coordinate: `move`
 
 Move a player to a coordinate on the strategy board.
@@ -711,6 +743,7 @@ The image below shows the new position of John: You can see that the circle cent
 
 ![move-ex2](images/move-ex2.png)
 
+<div style="page-break-after: always"></div>
 
 #### 4.3.5 Export strategy board as image file: `export`
 
@@ -733,6 +766,8 @@ Then just select your desired directory and filename and you're done!
 <div markdown="span" class="alert alert-primary">
 :bulb: <strong>Note:</strong> The above GUI may look slightly different depending on your operating system.
 </div>
+
+<div style="page-break-after: always"></div>
 
 ### 4.4 General
 
@@ -765,6 +800,8 @@ Exits the program.
 **Q**: I saved an image using `export` before but after saving another image the first one disappeared?<br>
 **A**: Make sure to change the file name when you download the image to your local directory. Oftentimes if you have two images with the same name in the same place the new file replaces the older one. 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **6. Command summary**
 
