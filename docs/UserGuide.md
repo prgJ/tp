@@ -79,14 +79,10 @@ Here's a quick tutorial to get you started!
 
 5. You can now use their keyboard to type commands into the CLI.
 
-6. If the command entered is valid, it should disappear from the CLI box upon pressing enter. A message indicating successful completion will pop up.
-
-   6.1 A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below! ![add-task-true](images/add-task-true.png)
+6. If the command entered is valid, it should disappear from the CLI box upon pressing enter. A message indicating successful completion will pop up. A visual successful example for the command [add-task](#422-adding-a-task-add-t) is shown below! ![add-task-true](images/add-task-true.png)
 
 7. If the command entered is invalid it will turn red and remain in the CLI box upon pressing enter. An error message
-   detailing what might have gone wrong will pop up instead!
-
-   7.1 A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below! ![add-task-false](images/add-task-false.png)
+   detailing what might have gone wrong will pop up instead! A visual example for the command [add-task](#422-adding-a-task-add-t) is shown below! ![add-task-false](images/add-task-false.png)
 
 8. For more information on the commands Refer to the [Features](#4-features) section below for more information and details on the command formats Coach2k22 accepts!
 
