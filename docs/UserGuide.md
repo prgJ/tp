@@ -608,11 +608,11 @@ This will bring you to the contact tab - displaying only the contact information
 
 **Your GUI display before entering the command:**
 
-![getperson-ex1](images/getperson-ex1.png)
+![get-person-ex1](images/get-person-ex1.png)
 
 **Your GUI display after entering the command:**
 
-![getperson-ex2](images/getperson-ex2.png)
+![get-person-ex2](images/get-person-ex2.png)
 
 
 #### 4.2.10 Sorting tasks by date : `sort-date`
